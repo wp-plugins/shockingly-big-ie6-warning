@@ -9,6 +9,7 @@ else if (window.ActiveXObject) Client.Engine = {'name': 'ie', 'version': (Client
 else if (!navigator.taintEnabled) Client.Engine = {'name': 'webkit', 'version': (Client.Features.xpath) ? 420 : 419};
 else if (document.getBoxObjectFor != null) Client.Engine.name = 'gecko';
 Client.Engine[Client.Engine.name] = Client.Engine[Client.Engine.name + Client.Engine.version] = true;
+// taken from http://www.stopie6.org/ ie6 detection script
 
 jQuery(document).ready(function(){
 	if (jQuery.browser.msie && jQuery.browser.version<="6.0") {
