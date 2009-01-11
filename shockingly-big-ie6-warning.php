@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6. Go to the <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">plugin page</a> for options.
 Author: matias s.
-Version: 0.4
+Version: 0.5
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -77,6 +77,12 @@ function ie6w_center_head() {
 	echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/ie6w.center.js\"></script>";
 }
 
+// CRASH
+function ie6w_crash() {
+	echo "<style>*{position:relative}</style><table><input></table>
+	<STYLE>@;/*";
+}
+
 // HEAD HOOK
 add_action("wp_head", "ie6w_warning");
 function ie6w_warning() {
@@ -84,6 +90,8 @@ function ie6w_warning() {
 		ie6w_top_head();
 	} else if (get_option("ie6w_type")=="big") {
 		ie6w_center_head();
+	} else if (get_option("ie6w_type")=="crash") {
+		ie6w_crash();
 	}
 }
 
@@ -117,10 +125,11 @@ function ie6w_options() {
 	<h2><?php echo __("Shockingly Big IE6 Warning Options", $ie6w_dom); ?></h2>
 	<h3><?php echo __("Settings", $ie6w_dom); ?></h3>
 	<form method="post" name="options" target="_self">
-	<p><label for="name" style="width: 200px;float: left;text-align: left;margin-left: 10px"><?php echo __("Warning type", $ie6w_dom); ?></label><select name="ie6w_form_type_opt" style="width: 100px"><option value="small"<?php if ($ie6w_type_val == "small") echo " selected=\"selected\"";?> /><?php echo __("Small", $ie6w_dom); ?></option><option value="big"<?php if ($ie6w_type_val == "big") echo " selected=\"selected\"";?> /><?php echo __("Big", $ie6w_dom); ?></option></select></p>
+	<p><label for="name" style="width: 200px;float: left;text-align: left;margin-left: 10px"><?php echo __("Warning type", $ie6w_dom); ?></label><select name="ie6w_form_type_opt" style="width: 100px"> <option value="small"<?php if ($ie6w_type_val == "small") echo " selected=\"selected\"";?> /><?php echo __("Small", $ie6w_dom); ?></option> <option value="big"<?php if ($ie6w_type_val == "big") echo " selected=\"selected\"";?> /><?php echo __("Big", $ie6w_dom); ?></option> <option value="crash"<?php if ($ie6w_type_val == "crash") echo " selected=\"selected\"";?> /><?php echo __("Crash", $ie6w_dom); ?></option></select></p>
 	<p><label for="name"style="width: 200px;float: left;text-align: left;margin-left: 10px"><?php echo __("Use provided jQuery", $ie6w_dom); ?></label><select name="ie6w_form_jq_opt" style="width: 100px"><option value="true"<?php if ($ie6w_jq_val == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option><option value="false"<?php if ($ie6w_jq_val == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></p>
 	<p class="submit"><input type="submit" name="update_options" value="<?php echo __("Update", $ie6w_dom); ?>"/></p>
 	</form>
+	<p><?php echo __("<strong>Crash</strong>: thats a mean option i know, but maybe this way people realize that IE6 really sucks.", $ie6w_dom); ?></p>
 	<p><?php echo __("<strong>Attention</strong>: many themes (like <a href=\"http://getk2.com/\" target=\"_blank\" rel=\"nofollow\">K2</a> and similar) already come with <a href=\"http://jquery.com/\" target=\"_blank\" rel=\"nofollow\">jQuery</a>, so you dont need to use the jQuery provided with the plugin, but if the warning is not showing select <strong>Yes</strong> and it should show.", $ie6w_dom); ?></p>
 	<p><?php echo __("<strong>Note</strong>: i'm still learning php & wordpress coding and im using this plugin to study, so if you have any ideia or any kind of suggestion or critic please contact me.", $ie6w_dom); ?></p>
 	<p><?php echo __("by <a href=\"mailto:matias@incerteza.org\">matias s.</a> at <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>", $ie6w_dom); ?></p>
