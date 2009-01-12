@@ -39,7 +39,7 @@ register_activation_hook( __FILE__, 'ie6w_activate' );
 function ie6w_activate() {
 	if (!(get_option("ie6w_setup")=="false")) {
 		add_option("ie6w_setup", "false");
-		
+		// opções
 		add_option("ie6w_type", "off");
 		add_option("ie6w_jq", "true");
 		add_option("ie6w_t1", "WARNING");
