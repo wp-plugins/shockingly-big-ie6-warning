@@ -4,7 +4,7 @@ Donate link: http://www.incerteza.org/blog/
 Tags: admin, warning, plugin, popup, ie6, ie, jQuery, internet explorer, microsoft, security
 Requires at least: 2.5
 Tested up to: 2.7
-Stable tag: 0.7
+Stable tag: 0.8
 
 A shockingly big IE6 warning.
 
