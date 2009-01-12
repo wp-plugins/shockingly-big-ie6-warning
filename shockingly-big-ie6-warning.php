@@ -39,7 +39,8 @@ register_activation_hook( __FILE__, 'ie6w_activate' );
 function ie6w_activate() {
 	if (!(get_option("ie6w_setup")=="false")) {
 		add_option("ie6w_setup", "false");
-		add_option("ie6w_type", "small");
+		
+		add_option("ie6w_type", "off");
 		add_option("ie6w_jq", "true");
 		add_option("ie6w_t1", "WARNING");
 		add_option("ie6w_t2", "You are using Internet Explorer version 6.0 or lower. Due to security issues and lack of support for Web Standards it is highly recommended that you upgrade to a modern browser.");
