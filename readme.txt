@@ -4,23 +4,34 @@ Donate link: http://www.incerteza.org/blog/
 Tags: admin, warning, plugin, popup, ie6, ie, jQuery, internet explorer, microsoft, security
 Requires at least: 2.5
 Tested up to: 2.7
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
-A shockingly big IE6 warning. A shockingly BIG or SMALL warning message about the dangers of using IE6.
+A shockingly BIG or SMALL warning message about the dangers of using IE6. And now an option to crash IE6 and customize the message.
 
 == Description ==
 
-A shockingly BIG or SMALL warning message about the dangers of using IE6.
-And now an option to crash IE6 and customized message.
+The *Shockingly Big IE6 Warning* is a plugin that shows a warning message alerting the user why is bad to use IE6, the security risk and the bad compatibility of Web Standards.
 
-Changelog
+You can choose 3 type os warning:
 
-**1.3.1**
+* SMALL, a discreet top bar
+* BIG, a fullscreen warning
+* CRASH, the mean option
+
+**Changelog**
+
+*1.3.1*
 
 * First Changelog
 * Some code fix
 * readme.txt fixes
 * English spelling fixes
+
+**TODO**
+
+* Better message customization
+* Customized message css
+* Option to Warning about IE in general
 
 Thanks for everyones suggestions!
 
