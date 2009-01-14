@@ -15,8 +15,7 @@ And now an option to crash IE6 and customized message.
 
 Changelog
 
-*1.3.1*
-
+**1.3.1**
 * First changelog
 * Some code fix
 * English spelling fixes
