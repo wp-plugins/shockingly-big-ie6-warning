@@ -1,4 +1,4 @@
-/* 1.3.1 */
+/* 1.3.5 */
 var Client = {
 	Engine: {'name': 'unknown', 'version': ''},	
 	Features: {}
@@ -15,7 +15,7 @@ Client.Engine[Client.Engine.name] = Client.Engine[Client.Engine.name + Client.En
 jQuery(document).ready(function(){
 	if (jQuery.browser.msie && jQuery.browser.version<="6.0") {
 	if (Client.Engine.ie && !Client.Engine.ie7) {
-		jQuery("body").prepend('<div id="ie6w_container"><div id="ie6w_frame"><div id="ie6w_center"><div id="ie6w_t1">' + ie6w_t1 + '</div><div id="ie6w_t2">' + ie6w_t2 + '</div><div id="ie6w_t3">' + ie6w_t3 + '</div><div id="ie6w_browsers"><a href="http://www.getfirefox.net/" target="_blank"><img src="' + ie6w_url + '/img/ff.gif" alt="get Firefox!" width="28" height="28" border="0" /></a><a href="http://www.opera.com/" target="_blank"><img src="' + ie6w_url + '/img/op.gif" alt="get Opera!" width="28" height="28" border="0" /><a href="http://www.apple.com/safari" target="_blank"><img src="' + ie6w_url + '/img/safari.gif" alt="get Safari!" width="28" height="28" border="0" /></a></a><a href="http://www.microsoft.com/windows/ie/" target="_blank"><img src="' + ie6w_url + '/img/ie.gif" alt="get IE7!" width="28" height="28" border="0" /></a></div></div></div></div>');
+		jQuery("body").prepend('<div id="ie6w_container"><div id="ie6w_frame"><div id="ie6w_center"><div id="ie6w_t1">' + ie6w_t1 + '</div><div id="ie6w_t2">' + ie6w_t2 + '</div><div id="ie6w_t3">' + ie6w_t3 + '</div><div id="ie6w_browsers"></div></div></div></div>');
 		jQuery("#ie6w_container").css({
                 "position": "absolute",
                 "zIndex": "8",
@@ -58,7 +58,7 @@ jQuery(document).ready(function(){
 				"font-size": "16px",
 				"color": "#000000",
 				"position": "absolute",
-				"width": "400px",
+				"width": (jQuery("#ie6w_container #ie6w_frame #ie6w_center").width() - 50) + "px",
  				"left": "25px",
 				"top": "95px",
 				"text-align": "justify"
@@ -69,21 +69,41 @@ jQuery(document).ready(function(){
 				"font-weight": "bold",
 				"color": "#000000",
 				"position": "absolute",
-				"width": "400px",
+				"width": (jQuery("#ie6w_container #ie6w_frame #ie6w_center").width() - 50) + "px",
  				"left": "25px",
 				"top": (jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_t2").height() + 95 + 20) + "px",
 				"text-align": "justify"
 		});
 		jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").css({
 				"height": "28px",
-				"width": (jQuery("#ie6w_container #ie6w_frame #ie6w_center").width() - 10) + "px",
-				"bottom": "0px",
-				"left": "0px",
+				"bottom": "5px",
+				"right": "5px",
 				"position": "absolute",
-				"background": "#FFFFFF",
-				"padding": "5px",
+				"overflow": "hidden",
 				"text-align": "right"
 		});
+		var ie6w_b = 0;
+		if(ie6w_ie7=="true") {
+			ie6w_b++;
+			jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").prepend('<a href="http://www.microsoft.com/windows/ie/" target="_blank"><img src="' + ie6w_url + '/img/ie.gif" alt="get IE7!" width="28" height="28" border="0" /></a>');
+		}
+		if(ie6w_safari=="true") {
+			ie6w_b++;
+			jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").prepend('<a href="http://www.apple.com/safari" target="_blank"><img src="' + ie6w_url + '/img/safari.gif" alt="get Safari!" width="28" height="28" border="0" /></a>');
+		}
+		if(ie6w_chrome=="true") {
+			ie6w_b++;
+			jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").prepend('<a href="http://www.google.com/chrome/" target="_blank"><img src="' + ie6w_url + '/img/chrome.gif" alt="get Chrome!" width="28" height="28" border="0" /></a>');
+		}
+		if(ie6w_opera=="true") {
+			ie6w_b++;
+			jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").prepend('<a href="http://www.opera.com/" target="_blank"><img src="' + ie6w_url + '/img/op.gif" alt="get Opera!" width="28" height="28" border="0" /></a>');
+		}
+		if(ie6w_ff=="true") {
+			ie6w_b++;
+			jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").prepend('<a href="http://www.getfirefox.net/" target="_blank"><img src="' + ie6w_url + '/img/ff.gif" alt="get Firefox!" width="28" height="28" border="0" /></a>');
+		}
+		jQuery("#ie6w_container #ie6w_frame #ie6w_center #ie6w_browsers").width(28*ie6w_b);
 		jQuery("#ie6w_container").click(function () {
 			jQuery("#ie6w_container").remove();
     	});

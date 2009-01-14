@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6. Go to the <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">plugin page</a> for options.
 Author: matias s.
-Version: 1.3.1
+Version: 1.3.5
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -39,7 +39,12 @@ register_activation_hook( __FILE__, 'ie6w_activate' );
 function ie6w_activate() {
 	if (!(get_option("ie6w_setup")=="false")) {
 		add_option("ie6w_setup", "false");
-		// opções
+		// INICIALIZAÇÃO
+		add_option("ie6w_b_ff", "true");
+		add_option("ie6w_b_opera", "true");
+		add_option("ie6w_b_chrome", "true");
+		add_option("ie6w_b_safari", "true");
+		add_option("ie6w_b_ie7", "true");
 		add_option("ie6w_type", "off");
 		add_option("ie6w_jq", "true");
 		add_option("ie6w_t1", "WARNING");
@@ -51,12 +56,17 @@ function ie6w_activate() {
 // DESATIVAÇÃO DO PLUGIN
 register_deactivation_hook( __FILE__, 'ie6w_deactivate' );
 function ie6w_deactivate() {
+	delete_option("ie6w_setup");
 	delete_option("ie6w_type");
 	delete_option("ie6w_jq");
-	delete_option("ie6w_setup");
 	delete_option("ie6w_t1");
 	delete_option("ie6w_t2");
 	delete_option("ie6w_t3");
+	delete_option("ie6w_b_ff");
+	delete_option("ie6w_b_opera");
+	delete_option("ie6w_b_chrome");
+	delete_option("ie6w_b_safari");
+	delete_option("ie6w_b_ie7");
 }
 
 // AVISO TOPO
@@ -67,6 +77,11 @@ function ie6w_top_head() {
 			var ie6w_url = \"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/\";
 			var ie6w_t1=\"" . get_option("ie6w_t1") . "\";
 			var ie6w_t2=\"" . get_option("ie6w_t2") . "\";
+			var ie6w_ff=\"" . get_option("ie6w_b_ff") . "\";
+			var ie6w_opera=\"" . get_option("ie6w_b_opera") . "\";
+			var ie6w_chrome=\"" . get_option("ie6w_b_chrome") . "\";
+			var ie6w_safari=\"" . get_option("ie6w_b_safari") . "\";
+			var ie6w_ie7=\"" . get_option("ie6w_b_ie7") . "\";
 			</script>";
 	echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/ie6w.top.js\"></script>";
 }
@@ -80,6 +95,11 @@ function ie6w_center_head() {
 			var ie6w_t1=\"" . get_option("ie6w_t1") . "\";
 			var ie6w_t2=\"" . get_option("ie6w_t2") . "\";
 			var ie6w_t3=\"" . get_option("ie6w_t3") . "\";
+			var ie6w_ff=\"" . get_option("ie6w_b_ff") . "\";
+			var ie6w_opera=\"" . get_option("ie6w_b_opera") . "\";
+			var ie6w_chrome=\"" . get_option("ie6w_b_chrome") . "\";
+			var ie6w_safari=\"" . get_option("ie6w_b_safari") . "\";
+			var ie6w_ie7=\"" . get_option("ie6w_b_ie7") . "\";
 			</script>";
 	echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/ie6w.center.js\"></script>";
 }
@@ -118,16 +138,16 @@ function ie6w_menu() {
 function ie6w_options() {
 	global $ie6w_dom;
 	if (isset($_POST['update_options'])) {
-		$ie6w_type_val = $_POST["ie6w_form_type_opt"];
-		$ie6w_jq_val = $_POST["ie6w_form_jq_opt"];
-		$ie6w_form_t1_opt = $_POST["ie6w_form_t1_opt"];
-		$ie6w_form_t2_opt = $_POST["ie6w_form_t2_opt"];
-		$ie6w_form_t3_opt = $_POST["ie6w_form_t3_opt"];
-		update_option("ie6w_type", $ie6w_type_val);
-		update_option("ie6w_jq", $ie6w_jq_val);
-		if ($ie6w_form_t1_opt != "") { update_option("ie6w_t1", $ie6w_form_t1_opt); }
-		if ($ie6w_form_t2_opt != "") { update_option("ie6w_t2", $ie6w_form_t2_opt); }
-		if ($ie6w_form_t3_opt != "") { update_option("ie6w_t3", $ie6w_form_t3_opt); }
+		update_option("ie6w_type", $_POST["ie6w_form_type_opt"]);
+		update_option("ie6w_jq", $_POST["ie6w_form_jq_opt"]);
+		if ($_POST["ie6w_form_t1_opt"] != "") { update_option("ie6w_t1", $_POST["ie6w_form_t1_opt"]); }
+		if ($_POST["ie6w_form_t2_opt"] != "") { update_option("ie6w_t2", $_POST["ie6w_form_t2_opt"]); }
+		if ($_POST["ie6w_form_t3_opt"] != "") { update_option("ie6w_t3", $_POST["ie6w_form_t3_opt"]); }
+		update_option("ie6w_b_ff", $_POST["ie6w_form_ff_opt"]);
+		update_option("ie6w_b_opera", $_POST["ie6w_form_opera_opt"]);
+		update_option("ie6w_b_chrome", $_POST["ie6w_form_chrome_opt"]);
+		update_option("ie6w_b_safari", $_POST["ie6w_form_safari_opt"]);
+		update_option("ie6w_b_ie7", $_POST["ie6w_form_ie7_opt"]);
 		echo "<div id=\"message\" class=\"updated fade\"><p><strong>" . __("Options updated.", $ie6w_dom) . "</strong></p></div>";
     }
 	if (isset($_POST['reset_options'])) {
@@ -136,11 +156,6 @@ function ie6w_options() {
 		update_option("ie6w_t3", "After the update you can acess this site normally.");
 		echo "<div id=\"message\" class=\"updated fade\"><p><strong>" . __("Default text loaded.", $ie6w_dom) . "</strong></p></div>";
     } 
-		$ie6w_type_val = get_option("ie6w_type");
-		$ie6w_jq_val = get_option("ie6w_jq");
-		$ie6w_form_t1_val = get_option("ie6w_t1");
-		$ie6w_form_t2_val = get_option("ie6w_t2");
-		$ie6w_form_t3_val = get_option("ie6w_t3");
     ?>
 	<div class="wrap">
 	<h2><?php echo __("Shockingly Big IE6 Warning Options", $ie6w_dom); ?></h2>
@@ -155,18 +170,58 @@ function ie6w_options() {
       <tr>
         <td width="125"><?php echo __("Warning type", $ie6w_dom); ?></td>
         <td><select name="ie6w_form_type_opt" style="width: 100px">
-        		<option value="off"<?php if ($ie6w_type_val == "off") echo " selected=\"selected\"";?> /><?php echo __("Off", $ie6w_dom); ?></option>
-                <option value="small"<?php if ($ie6w_type_val == "small") echo " selected=\"selected\"";?> /><?php echo __("Small", $ie6w_dom); ?></option>
-                <option value="big"<?php if ($ie6w_type_val == "big") echo " selected=\"selected\"";?> /><?php echo __("Big", $ie6w_dom); ?></option>
-                <option value="crash"<?php if ($ie6w_type_val == "crash") echo " selected=\"selected\"";?> /><?php echo __("Crash", $ie6w_dom); ?></option></select></td>
+        		<option value="off"<?php if (get_option("ie6w_type") == "off") echo " selected=\"selected\"";?> /><?php echo __("Off", $ie6w_dom); ?></option>
+                <option value="small"<?php if (get_option("ie6w_type") == "small") echo " selected=\"selected\"";?> /><?php echo __("Small", $ie6w_dom); ?></option>
+                <option value="big"<?php if (get_option("ie6w_type") == "big") echo " selected=\"selected\"";?> /><?php echo __("Big", $ie6w_dom); ?></option>
+                <option value="crash"<?php if (get_option("ie6w_type") == "crash") echo " selected=\"selected\"";?> /><?php echo __("Crash", $ie6w_dom); ?></option></select></td>
         <td><?php echo __("The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option.", $ie6w_dom); ?></td>
       </tr>
       <tr>
         <td width="125"><?php echo __("Use provided jQuery", $ie6w_dom); ?></td>
         <td><select name="ie6w_form_jq_opt" style="width: 100px">
-                <option value="true"<?php if ($ie6w_jq_val == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
-                <option value="false"<?php if ($ie6w_jq_val == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
+                <option value="true"<?php if (get_option("ie6w_jq") == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
+                <option value="false"<?php if (get_option("ie6w_jq") == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
         <td><?php echo __("Many themes (like <a href=\"http://getk2.com/\" target=\"_blank\" rel=\"nofollow\">K2</a> and similar) already come with <a href=\"http://jquery.com/\" target=\"_blank\" rel=\"nofollow\">jQuery</a>, so you dont need to use the jQuery provided with the plugin, but if the warning is not showing select <strong>Yes</strong> and it should show.", $ie6w_dom); ?></td>
+      </tr>
+      <thead><tr>
+        <th>Browsers</th>
+        <th>&nbsp;</th>
+        <th><?php echo __("Description", $ie6w_dom); ?></th>
+      </tr></thead>
+      <tr>
+        <td>Mozilla Firefox</td>
+        <td><select name="ie6w_form_ff_opt" style="width: 100px">
+                <option value="true"<?php if (get_option("ie6w_b_ff") == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
+                <option value="false"<?php if (get_option("ie6w_b_ff") == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
+        <td><?php echo __("Shows Mozilla Firefox on the browser suggestion.", $ie6w_dom); ?></td>
+      </tr>
+      <tr>
+        <td>Opera</td>
+        <td><select name="ie6w_form_opera_opt" style="width: 100px">
+                <option value="true"<?php if (get_option("ie6w_b_opera") == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
+                <option value="false"<?php if (get_option("ie6w_b_opera") == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
+        <td><?php echo __("Shows Opera on the browser suggestion.", $ie6w_dom); ?></td>
+      </tr>
+      <tr>
+        <td>Google Chrome</td>
+        <td><select name="ie6w_form_chrome_opt" style="width: 100px">
+                <option value="true"<?php if (get_option("ie6w_b_chrome") == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
+                <option value="false"<?php if (get_option("ie6w_b_chrome") == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
+        <td><?php echo __("Shows Google Chorme on the browser suggestion.", $ie6w_dom); ?></td>
+      </tr>
+      <tr>
+        <td>Apple Safari</td>
+        <td><select name="ie6w_form_safari_opt" style="width: 100px">
+                <option value="true"<?php if (get_option("ie6w_b_safari") == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
+                <option value="false"<?php if (get_option("ie6w_b_safari") == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
+        <td><?php echo __("Shows Apple Safari on the browser suggestion.", $ie6w_dom); ?></td>
+      </tr>
+      <tr>
+        <td>Internet Explorer 7</td>
+        <td><select name="ie6w_form_ie7_opt" style="width: 100px">
+                <option value="true"<?php if (get_option("ie6w_b_ie7") == "true") echo " selected=\"selected\"";?> /><?php echo __("Yes", $ie6w_dom); ?></option>
+                <option value="false"<?php if (get_option("ie6w_b_ie7") == "false") echo " selected=\"selected\"";?> /><?php echo __("No", $ie6w_dom); ?></option></select></td>
+        <td><?php echo __("Shows Internet Explorer 7 on the browser suggestion.", $ie6w_dom); ?></td>
       </tr>
     </table>
     <h2><?php echo __("Warning", $ie6w_dom); ?></h2>
@@ -177,15 +232,15 @@ function ie6w_options() {
 		</tr></thead>
 		<tr>
 			<td width="125"><?php echo __("Title", $ie6w_dom); ?></td>
-		  <td><input type="text" name="ie6w_form_t1_opt" style="width:100%;" value="<?php echo $ie6w_form_t1_val ?>"/></td>
+		  <td><input type="text" name="ie6w_form_t1_opt" style="width:100%;" value="<?php echo get_option("ie6w_t1") ?>"/></td>
 		</tr>
 		<tr>
 			<td width="125"><?php echo __("Text", $ie6w_dom); ?></td>
-			<td><textarea name="ie6w_form_t2_opt" rows="5" style="width:100%;"><?php echo $ie6w_form_t2_val ?></textarea></td>
+			<td><textarea name="ie6w_form_t2_opt" rows="5" style="width:100%;"><?php echo get_option("ie6w_t2") ?></textarea></td>
 		</tr>
 		<tr>
 			<td width="125"><?php echo __("Observation", $ie6w_dom); ?></td>
-		  <td><input type="text" name="ie6w_form_t3_opt" style="width:100%;" value="<?php echo $ie6w_form_t3_val ?>"/></td>
+		  <td><input type="text" name="ie6w_form_t3_opt" style="width:100%;" value="<?php echo get_option("ie6w_t3") ?>"/></td>
 		</tr>
 	</table>
 	<p class="submit"><input type="submit" name="update_options" value="<?php echo __("Update", $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __("Default text", $ie6w_dom); ?>"/></p>

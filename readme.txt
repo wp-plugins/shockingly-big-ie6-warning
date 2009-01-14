@@ -4,7 +4,7 @@ Donate link: http://www.incerteza.org/blog/
 Tags: admin, warning, plugin, popup, ie6, ie, jQuery, internet explorer, microsoft, security
 Requires at least: 2.5
 Tested up to: 2.7
-Stable tag: 1.3.2
+Stable tag: 1.3.5
 
 A shockingly BIG or SMALL warning message about the dangers of using IE6. And now an option to crash IE6 and customize the message.
 
@@ -19,6 +19,10 @@ You can choose 3 type os warning:
 * CRASH, the mean option
 
 **Changelog**
+
+*1.3.5*
+
+* Now you can select what browsers logo appear in the warning
 
 *1.3.1*
 
