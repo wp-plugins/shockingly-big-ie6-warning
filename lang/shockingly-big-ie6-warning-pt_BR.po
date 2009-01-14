@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shockingly-big-ie6-warning\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-12 13:26-0300\n"
+"POT-Creation-Date: 2009-01-14 09:10-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: matias s.\n"
@@ -13,109 +13,109 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: shockingly-big-ie6-warning.php:114
-#: shockingly-big-ie6-warning.php:145
+#: shockingly-big-ie6-warning.php:115
+#: shockingly-big-ie6-warning.php:146
 msgid "Shockingly Big IE6 Warning Options"
 msgstr "Opções Shockingly Big IE6 Warning"
 
-#: shockingly-big-ie6-warning.php:114
+#: shockingly-big-ie6-warning.php:115
 msgid "Shockingly Big IE6 Warning"
 msgstr "Shockingly Big IE6 Warning"
 
-#: shockingly-big-ie6-warning.php:130
+#: shockingly-big-ie6-warning.php:131
 msgid "Options updated."
 msgstr "Opções atualizadas."
 
-#: shockingly-big-ie6-warning.php:136
+#: shockingly-big-ie6-warning.php:137
 msgid "Default text loaded."
 msgstr "Texto padrão carregado."
 
-#: shockingly-big-ie6-warning.php:146
+#: shockingly-big-ie6-warning.php:147
 msgid "Settings"
 msgstr "Configurações"
 
-#: shockingly-big-ie6-warning.php:150
+#: shockingly-big-ie6-warning.php:151
 msgid "Setting"
 msgstr "Configuração"
 
-#: shockingly-big-ie6-warning.php:152
+#: shockingly-big-ie6-warning.php:153
 msgid "Description"
 msgstr "Descrição"
 
-#: shockingly-big-ie6-warning.php:155
+#: shockingly-big-ie6-warning.php:156
 msgid "Warning type"
 msgstr "Tipo do aviso"
 
-#: shockingly-big-ie6-warning.php:157
+#: shockingly-big-ie6-warning.php:158
 msgid "Off"
 msgstr "Desligado"
 
-#: shockingly-big-ie6-warning.php:158
+#: shockingly-big-ie6-warning.php:159
 msgid "Small"
 msgstr "Pequeno"
 
-#: shockingly-big-ie6-warning.php:159
+#: shockingly-big-ie6-warning.php:160
 msgid "Big"
 msgstr "Grande"
 
-#: shockingly-big-ie6-warning.php:160
+#: shockingly-big-ie6-warning.php:161
 msgid "Crash"
 msgstr "Travar"
 
-#: shockingly-big-ie6-warning.php:161
-msgid "The type of warning that will be showed. <strong>Small</strong>, the discret top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option."
+#: shockingly-big-ie6-warning.php:162
+msgid "The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option."
 msgstr "O tipo de aviso que será mostrado. <strong>Pequeno</strong>, uma discreta barra no topo. <strong>Grande</strong>, aviso em tela cheia. <strong>Travar</strong>, a opção malvada."
 
-#: shockingly-big-ie6-warning.php:164
+#: shockingly-big-ie6-warning.php:165
 msgid "Use provided jQuery"
 msgstr "Usar jQuery fornecido"
 
-#: shockingly-big-ie6-warning.php:166
+#: shockingly-big-ie6-warning.php:167
 msgid "Yes"
 msgstr "Sim"
 
-#: shockingly-big-ie6-warning.php:167
+#: shockingly-big-ie6-warning.php:168
 msgid "No"
 msgstr "Não"
 
-#: shockingly-big-ie6-warning.php:168
+#: shockingly-big-ie6-warning.php:169
 msgid "Many themes (like <a href=\"http://getk2.com/\" target=\"_blank\" rel=\"nofollow\">K2</a> and similar) already come with <a href=\"http://jquery.com/\" target=\"_blank\" rel=\"nofollow\">jQuery</a>, so you dont need to use the jQuery provided with the plugin, but if the warning is not showing select <strong>Yes</strong> and it should show."
 msgstr "Muitos temas (como o <a href=\"http://getk2.com/\" target=\"_blank\" rel=\"nofollow\">K2</a> e similares) já vem com o <a href=\"http://jquery.com/\" target=\"_blank\" rel=\"nofollow\">jQuery</a>, não sendo necessário usar o jQuery fornecido com o plugin, mas se o aviso não estiver aparecendo selecione <strong>Sim</strong> e ele deverá funcionar."
 
-#: shockingly-big-ie6-warning.php:171
+#: shockingly-big-ie6-warning.php:172
 msgid "Warning"
 msgstr "Aviso"
 
-#: shockingly-big-ie6-warning.php:174
+#: shockingly-big-ie6-warning.php:175
 msgid "Field"
 msgstr "Campo"
 
-#: shockingly-big-ie6-warning.php:175
-#: shockingly-big-ie6-warning.php:182
+#: shockingly-big-ie6-warning.php:176
+#: shockingly-big-ie6-warning.php:183
 msgid "Text"
 msgstr "Texto"
 
-#: shockingly-big-ie6-warning.php:178
+#: shockingly-big-ie6-warning.php:179
 msgid "Title"
 msgstr "Título"
 
-#: shockingly-big-ie6-warning.php:186
+#: shockingly-big-ie6-warning.php:187
 msgid "Observation"
 msgstr "Observação"
 
-#: shockingly-big-ie6-warning.php:190
+#: shockingly-big-ie6-warning.php:191
 msgid "Update"
 msgstr "Atualizar"
 
-#: shockingly-big-ie6-warning.php:190
+#: shockingly-big-ie6-warning.php:191
 msgid "Default text"
 msgstr "Texto padrão"
 
-#: shockingly-big-ie6-warning.php:192
-msgid "<strong>Note</strong>: i'm still learning php & wordpress coding and im using this plugin to study, so if you have any ideia or any kind of suggestion or critic please contact me."
-msgstr "<strong>Nota</strong>: eu ainda estou aprendendo php e a programar para wordpress e estou usando este plugin como estudo, então se você tem alguma idéia, sugestão ou crítica por favor entre em contato."
-
 #: shockingly-big-ie6-warning.php:193
+msgid "<strong>Note</strong>: i'm still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me."
+msgstr "<strong>Nota</strong>: eu ainda estou aprendendo PHP e a programar para Wordpress e estou usando este plugin como estudo, então se você tem alguma idéia ou sugestão por favor entre em contato."
+
+#: shockingly-big-ie6-warning.php:194
 msgid "by <a href=\"mailto:matias@incerteza.org\">matias s.</a> at <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>"
 msgstr "por <a href=\"mailto:matias@incerteza.org\">matias s.</a> em <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>"
 

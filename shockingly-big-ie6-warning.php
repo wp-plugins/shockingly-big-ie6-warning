@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6. Go to the <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">plugin page</a> for options.
 Author: matias s.
-Version: 1.3
+Version: 1.3.1
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -159,7 +159,7 @@ function ie6w_options() {
                 <option value="small"<?php if ($ie6w_type_val == "small") echo " selected=\"selected\"";?> /><?php echo __("Small", $ie6w_dom); ?></option>
                 <option value="big"<?php if ($ie6w_type_val == "big") echo " selected=\"selected\"";?> /><?php echo __("Big", $ie6w_dom); ?></option>
                 <option value="crash"<?php if ($ie6w_type_val == "crash") echo " selected=\"selected\"";?> /><?php echo __("Crash", $ie6w_dom); ?></option></select></td>
-        <td><?php echo __("The type of warning that will be showed. <strong>Small</strong>, the discret top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option.", $ie6w_dom); ?></td>
+        <td><?php echo __("The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option.", $ie6w_dom); ?></td>
       </tr>
       <tr>
         <td width="125"><?php echo __("Use provided jQuery", $ie6w_dom); ?></td>
@@ -190,7 +190,7 @@ function ie6w_options() {
 	</table>
 	<p class="submit"><input type="submit" name="update_options" value="<?php echo __("Update", $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __("Default text", $ie6w_dom); ?>"/></p>
 	</form>
-	<p><?php echo __("<strong>Note</strong>: i'm still learning php & wordpress coding and im using this plugin to study, so if you have any ideia or any kind of suggestion or critic please contact me.", $ie6w_dom); ?></p>
+	<p><?php echo __("<strong>Note</strong>: i'm still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me.", $ie6w_dom); ?></p>
 	<p><?php echo __("by <a href=\"mailto:matias@incerteza.org\">matias s.</a> at <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>", $ie6w_dom); ?></p>
 	</div>
 <?php }
