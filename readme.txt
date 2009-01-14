@@ -16,8 +16,10 @@ And now an option to crash IE6 and customized message.
 Changelog
 
 **1.3.1**
-* First changelog
+
+* First Changelog
 * Some code fix
+* readme.txt fixes
 * English spelling fixes
 
 Thanks for everyones suggestions!
