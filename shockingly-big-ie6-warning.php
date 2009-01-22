@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6. Go to the <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">plugin page</a> for options.
 Author: matias s.
-Version: 1.3.5
+Version: 1.4.0
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -30,16 +30,16 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-// VARIAVEIS GLOBAIS
+// Global Variables
 $ie6w_dom = "shockingly-big-ie6-warning";
 $ie6w_url = get_settings("siteurl");
 
-// ATIVAÇÃO DO PLUGIN
+// Activation hook
 register_activation_hook( __FILE__, 'ie6w_activate' );
 function ie6w_activate() {
 	if (!(get_option("ie6w_setup")=="false")) {
 		add_option("ie6w_setup", "false");
-		// INICIALIZAÇÃO
+		// initialization
 		add_option("ie6w_b_ff", "true");
 		add_option("ie6w_b_opera", "true");
 		add_option("ie6w_b_chrome", "true");
@@ -53,7 +53,7 @@ function ie6w_activate() {
 	}
 }
 
-// DESATIVAÇÃO DO PLUGIN
+// Deactivation hook
 register_deactivation_hook( __FILE__, 'ie6w_deactivate' );
 function ie6w_deactivate() {
 	delete_option("ie6w_setup");
@@ -69,7 +69,7 @@ function ie6w_deactivate() {
 	delete_option("ie6w_b_ie7");
 }
 
-// AVISO TOPO
+// Warning: TOP
 function ie6w_top_head() {
 	global $ie6w_url;
 	if (get_option("ie6w_jq")=="true") { echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/jquery.js\"></script>"; }
@@ -86,7 +86,7 @@ function ie6w_top_head() {
 	echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/ie6w.top.js\"></script>";
 }
 
-// AVISO MEIO
+// Warning: CENTER
 function ie6w_center_head() {
 	global $ie6w_url;
 	if (get_option("ie6w_jq")=="true") { echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/jquery.js\"></script>"; }
@@ -104,13 +104,24 @@ function ie6w_center_head() {
 	echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/ie6w.center.js\"></script>";
 }
 
-// CRASH
+// Warning: TEST
+function ie6w_test() {
+	global $ie6w_url, $ie6w_dom;
+	$ie6w_t4 = __('<a href=\"http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/\" target=\"_blank\">Shockingly Big IE6 Warning</a> (<em>test mode</em>): If the <strong>jQuery</strong> option is activated in the plugin option page, try deactivating it, and if the message persists you dont need to use the provided <strong>jQuery</strong>.',$ie6w_dom);
+	if (get_option("ie6w_jq")=="true") { echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/jquery.js\"></script>"; }
+	echo "<script type=\"text/javascript\">
+			var ie6w_t4=\"" . $ie6w_t4 . "\";
+			</script>";
+	echo "<script type=\"text/javascript\" src=\"" . $ie6w_url . "/wp-content/plugins/shockingly-big-ie6-warning/js/ie6w.test.js\"></script>";
+}
+
+// Warning: CRASH
 function ie6w_crash() {
 	echo "<style>*{position:relative}</style><table><input></table>
 	<STYLE>@;/*";
 }
 
-// HEAD HOOK
+// Head hook
 add_action("wp_head", "ie6w_warning");
 function ie6w_warning() {
 	if (get_option("ie6w_type")=="small") {
@@ -119,17 +130,19 @@ function ie6w_warning() {
 		ie6w_center_head();
 	} else if (get_option("ie6w_type")=="crash") {
 		ie6w_crash();
+	} else if (get_option("ie6w_type")=="test") {
+		ie6w_test();
 	}
 }
 
-// INICIALIZACAO
+// Initialization
 add_action("init", "ie6w_init");
 function ie6w_init() {
 	global $ie6w_dom;
 	load_plugin_textdomain($ie6w_dom,"/wp-content/plugins/shockingly-big-ie6-warning/lang/");
 }
 
-// PAGINA/MENU DE OPCAO
+// Option page
 add_action("admin_menu", "ie6w_menu");
 function ie6w_menu() {
 	add_options_page(__("Shockingly Big IE6 Warning Options", $ie6w_dom), __("Shockingly Big IE6 Warning", $ie6w_dom), 8, __FILE__, "ie6w_options");
@@ -171,10 +184,11 @@ function ie6w_options() {
         <td width="125"><?php echo __("Warning type", $ie6w_dom); ?></td>
         <td><select name="ie6w_form_type_opt" style="width: 100px">
         		<option value="off"<?php if (get_option("ie6w_type") == "off") echo " selected=\"selected\"";?> /><?php echo __("Off", $ie6w_dom); ?></option>
+        		<option value="test"<?php if (get_option("ie6w_type") == "test") echo " selected=\"selected\"";?> /><?php echo __("Test", $ie6w_dom); ?></option>
                 <option value="small"<?php if (get_option("ie6w_type") == "small") echo " selected=\"selected\"";?> /><?php echo __("Small", $ie6w_dom); ?></option>
                 <option value="big"<?php if (get_option("ie6w_type") == "big") echo " selected=\"selected\"";?> /><?php echo __("Big", $ie6w_dom); ?></option>
                 <option value="crash"<?php if (get_option("ie6w_type") == "crash") echo " selected=\"selected\"";?> /><?php echo __("Crash", $ie6w_dom); ?></option></select></td>
-        <td><?php echo __("The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option.", $ie6w_dom); ?></td>
+        <td><?php echo __("The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option. <strong>Test</strong>, the test mode, where a warning test message will appear in any browser", $ie6w_dom); ?></td>
       </tr>
       <tr>
         <td width="125"><?php echo __("Use provided jQuery", $ie6w_dom); ?></td>

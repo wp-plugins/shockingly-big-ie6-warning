@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shockingly-big-ie6-warning\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-14 14:56-0300\n"
+"POT-Creation-Date: 2009-01-22 13:53-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: matias s.\n"
@@ -13,140 +13,148 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: shockingly-big-ie6-warning.php:135
-#: shockingly-big-ie6-warning.php:161
+#: shockingly-big-ie6-warning.php:110
+msgid "<a href=\\\"http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/\\\" target=\\\"_blank\\\">Shockingly Big IE6 Warning</a> (<em>test mode</em>): If the <strong>jQuery</strong> option is activated in the plugin option page, try deactivating it, and if the message persists you dont need to use the provided <strong>jQuery</strong>."
+msgstr "<a href=\\\"http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/\\\" target=\\\"_blank\\\">Shockingly Big IE6 Warning</a> (<em>modo de teste</em>): Se a opção do <strong>jQuery</strong> está ativa na página de opções do plugin, tente desativá-la, se a mensagem permanecer visível não é necessário usar o <strong>jQuery</strong> fornecido."
+
+#: shockingly-big-ie6-warning.php:148
+#: shockingly-big-ie6-warning.php:174
 msgid "Shockingly Big IE6 Warning Options"
 msgstr "Opções Shockingly Big IE6 Warning"
 
-#: shockingly-big-ie6-warning.php:135
+#: shockingly-big-ie6-warning.php:148
 msgid "Shockingly Big IE6 Warning"
 msgstr "Shockingly Big IE6 Warning"
 
-#: shockingly-big-ie6-warning.php:151
+#: shockingly-big-ie6-warning.php:164
 msgid "Options updated."
 msgstr "Opções atualizadas."
 
-#: shockingly-big-ie6-warning.php:157
+#: shockingly-big-ie6-warning.php:170
 msgid "Default text loaded."
 msgstr "Texto padrão carregado."
 
-#: shockingly-big-ie6-warning.php:162
+#: shockingly-big-ie6-warning.php:175
 msgid "Settings"
 msgstr "Configurações"
 
-#: shockingly-big-ie6-warning.php:166
+#: shockingly-big-ie6-warning.php:179
 msgid "Setting"
 msgstr "Configuração"
 
-#: shockingly-big-ie6-warning.php:168
-#: shockingly-big-ie6-warning.php:189
+#: shockingly-big-ie6-warning.php:181
+#: shockingly-big-ie6-warning.php:203
 msgid "Description"
 msgstr "Descrição"
 
-#: shockingly-big-ie6-warning.php:171
+#: shockingly-big-ie6-warning.php:184
 msgid "Warning type"
 msgstr "Tipo do aviso"
 
-#: shockingly-big-ie6-warning.php:173
+#: shockingly-big-ie6-warning.php:186
 msgid "Off"
 msgstr "Desligado"
 
-#: shockingly-big-ie6-warning.php:174
+#: shockingly-big-ie6-warning.php:187
+msgid "Test"
+msgstr "Teste"
+
+#: shockingly-big-ie6-warning.php:188
 msgid "Small"
 msgstr "Pequeno"
 
-#: shockingly-big-ie6-warning.php:175
+#: shockingly-big-ie6-warning.php:189
 msgid "Big"
 msgstr "Grande"
 
-#: shockingly-big-ie6-warning.php:176
+#: shockingly-big-ie6-warning.php:190
 msgid "Crash"
 msgstr "Travar"
 
-#: shockingly-big-ie6-warning.php:177
-msgid "The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option."
-msgstr "O tipo de aviso que será mostrado. <strong>Pequeno</strong>, uma discreta barra no topo. <strong>Grande</strong>, aviso em tela cheia. <strong>Travar</strong>, a opção malvada."
+#: shockingly-big-ie6-warning.php:191
+msgid "The type of warning that will be showed. <strong>Small</strong>, the discreet top bar. <strong>Big</strong>, the full screen one. <strong>Crash</strong>, the mean option. <strong>Test</strong>, the test mode, where a warning test message will appear in any browser"
+msgstr "O tipo de aviso que será mostrado. <strong>Pequeno</strong>, uma discreta barra no topo. <strong>Grande</strong>, aviso em tela cheia. <strong>Travar</strong>, a opção malvada. <strong>Teste</strong>, o modo de teste, um aviso de teste aparecerá em qualquer browser"
 
-#: shockingly-big-ie6-warning.php:180
+#: shockingly-big-ie6-warning.php:194
 msgid "Use provided jQuery"
 msgstr "Usar jQuery fornecido"
 
-#: shockingly-big-ie6-warning.php:182
-#: shockingly-big-ie6-warning.php:194
-#: shockingly-big-ie6-warning.php:201
+#: shockingly-big-ie6-warning.php:196
 #: shockingly-big-ie6-warning.php:208
 #: shockingly-big-ie6-warning.php:215
 #: shockingly-big-ie6-warning.php:222
+#: shockingly-big-ie6-warning.php:229
+#: shockingly-big-ie6-warning.php:236
 msgid "Yes"
 msgstr "Sim"
 
-#: shockingly-big-ie6-warning.php:183
-#: shockingly-big-ie6-warning.php:195
-#: shockingly-big-ie6-warning.php:202
+#: shockingly-big-ie6-warning.php:197
 #: shockingly-big-ie6-warning.php:209
 #: shockingly-big-ie6-warning.php:216
 #: shockingly-big-ie6-warning.php:223
+#: shockingly-big-ie6-warning.php:230
+#: shockingly-big-ie6-warning.php:237
 msgid "No"
 msgstr "Não"
 
-#: shockingly-big-ie6-warning.php:184
+#: shockingly-big-ie6-warning.php:198
 msgid "Many themes (like <a href=\"http://getk2.com/\" target=\"_blank\" rel=\"nofollow\">K2</a> and similar) already come with <a href=\"http://jquery.com/\" target=\"_blank\" rel=\"nofollow\">jQuery</a>, so you dont need to use the jQuery provided with the plugin, but if the warning is not showing select <strong>Yes</strong> and it should show."
 msgstr "Muitos temas (como o <a href=\"http://getk2.com/\" target=\"_blank\" rel=\"nofollow\">K2</a> e similares) já vem com o <a href=\"http://jquery.com/\" target=\"_blank\" rel=\"nofollow\">jQuery</a>, não sendo necessário usar o jQuery fornecido com o plugin, mas se o aviso não estiver aparecendo selecione <strong>Sim</strong> e ele deverá funcionar."
 
-#: shockingly-big-ie6-warning.php:196
+#: shockingly-big-ie6-warning.php:210
 msgid "Shows Mozilla Firefox on the browser suggestion."
 msgstr "Mostra o Mozilla Firefox na sugestão de browsers."
 
-#: shockingly-big-ie6-warning.php:203
+#: shockingly-big-ie6-warning.php:217
 msgid "Shows Opera on the browser suggestion."
 msgstr "Mostra o Opera na sugestão de browsers."
 
-#: shockingly-big-ie6-warning.php:210
+#: shockingly-big-ie6-warning.php:224
 msgid "Shows Google Chorme on the browser suggestion."
 msgstr "Mostra o Google Chrome na sugestão de browsers."
 
-#: shockingly-big-ie6-warning.php:217
+#: shockingly-big-ie6-warning.php:231
 msgid "Shows Apple Safari on the browser suggestion."
 msgstr "Mostra o Apple Safari na sugestão de browsers."
 
-#: shockingly-big-ie6-warning.php:224
+#: shockingly-big-ie6-warning.php:238
 msgid "Shows Internet Explorer 7 on the browser suggestion."
 msgstr "Mostra o Internet Explorer 7 na sugestão de browsers."
 
-#: shockingly-big-ie6-warning.php:227
+#: shockingly-big-ie6-warning.php:241
 msgid "Warning"
 msgstr "Aviso"
 
-#: shockingly-big-ie6-warning.php:230
+#: shockingly-big-ie6-warning.php:244
 msgid "Field"
 msgstr "Campo"
 
-#: shockingly-big-ie6-warning.php:231
-#: shockingly-big-ie6-warning.php:238
+#: shockingly-big-ie6-warning.php:245
+#: shockingly-big-ie6-warning.php:252
 msgid "Text"
 msgstr "Texto"
 
-#: shockingly-big-ie6-warning.php:234
+#: shockingly-big-ie6-warning.php:248
 msgid "Title"
 msgstr "Título"
 
-#: shockingly-big-ie6-warning.php:242
+#: shockingly-big-ie6-warning.php:256
 msgid "Observation"
 msgstr "Observação"
 
-#: shockingly-big-ie6-warning.php:246
+#: shockingly-big-ie6-warning.php:260
 msgid "Update"
 msgstr "Atualizar"
 
-#: shockingly-big-ie6-warning.php:246
+#: shockingly-big-ie6-warning.php:260
 msgid "Default text"
 msgstr "Texto padrão"
 
-#: shockingly-big-ie6-warning.php:248
+#: shockingly-big-ie6-warning.php:262
 msgid "<strong>Note</strong>: i'm still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me."
 msgstr "<strong>Nota</strong>: eu ainda estou aprendendo PHP e a programar para Wordpress e estou usando este plugin como estudo, então se você tem alguma idéia ou sugestão por favor entre em contato."
 
-#: shockingly-big-ie6-warning.php:249
+#: shockingly-big-ie6-warning.php:263
 msgid "by <a href=\"mailto:matias@incerteza.org\">matias s.</a> at <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>"
 msgstr "por <a href=\"mailto:matias@incerteza.org\">matias s.</a> em <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>"
 
