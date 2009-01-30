@@ -20,6 +20,10 @@ You can choose 3 type os warning:
 
 **Changelog**
 
+*1.4.2*
+
+* Menu text changed to 1 line
+
 *1.4.0*
 
 * Test mode added
@@ -27,13 +31,6 @@ You can choose 3 type os warning:
 *1.3.5*
 
 * Now you can select what browsers logo appear in the warning
-
-*1.3.1*
-
-* First Changelog
-* Some code fix
-* readme.txt fixes
-* English spelling fixes
 
 **TODO**
 
