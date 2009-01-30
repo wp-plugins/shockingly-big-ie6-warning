@@ -1,4 +1,4 @@
-/* 1.4.0 */
+/* 1.4.2 */
 var Client = {
 	Engine: {'name': 'unknown', 'version': ''},	
 	Features: {}

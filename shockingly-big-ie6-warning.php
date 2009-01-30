@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6. Go to the <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">plugin page</a> for options.
 Author: matias s.
-Version: 1.4.0
+Version: 1.4.2
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -145,7 +145,7 @@ function ie6w_init() {
 // Option page
 add_action("admin_menu", "ie6w_menu");
 function ie6w_menu() {
-	add_options_page(__("Shockingly Big IE6 Warning Options", $ie6w_dom), __("Shockingly Big IE6 Warning", $ie6w_dom), 8, __FILE__, "ie6w_options");
+	add_options_page(__("Shockingly Big IE6 Warning Options", $ie6w_dom), __("S. Big IE6 Warning", $ie6w_dom), 8, __FILE__, "ie6w_options");
 }
 
 function ie6w_options() {

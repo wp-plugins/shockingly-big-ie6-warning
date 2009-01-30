@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shockingly-big-ie6-warning\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-22 13:53-0300\n"
+"POT-Creation-Date: 2009-01-30 19:43-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: matias s.\n"
@@ -23,8 +23,8 @@ msgid "Shockingly Big IE6 Warning Options"
 msgstr "Opções Shockingly Big IE6 Warning"
 
 #: shockingly-big-ie6-warning.php:148
-msgid "Shockingly Big IE6 Warning"
-msgstr "Shockingly Big IE6 Warning"
+msgid "S. Big IE6 Warning"
+msgstr "S. Big IE6 Warning"
 
 #: shockingly-big-ie6-warning.php:164
 msgid "Options updated."
