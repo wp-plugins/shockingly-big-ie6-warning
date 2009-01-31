@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6. Go to the <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">plugin page</a> for options.
 Author: matias s.
-Version: 1.4.2
+Version: 1.4.4
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -136,20 +136,36 @@ function ie6w_warning() {
 }
 
 // Initialization
-add_action("init", "ie6w_init");
+if ( is_admin() ) { add_action("init", "ie6w_init"); }
 function ie6w_init() {
 	global $ie6w_dom;
 	load_plugin_textdomain($ie6w_dom,"/wp-content/plugins/shockingly-big-ie6-warning/lang/");
 }
 
 // Option page
-add_action("admin_menu", "ie6w_menu");
+add_filter( 'plugin_action_links', 'ie6w_plugin_actions', 10, 2 );
+function ie6w_plugin_actions($links, $file){
+	static $this_plugin;
+ 	if( !$this_plugin ) $this_plugin = plugin_basename(__FILE__);
+ 	if( $file == $this_plugin ){
+		$settings_link = '<a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">' . __('Settings') . '</a>';
+		//$links = array_merge( array($settings_link), $links); // before other links
+		$links[1] = $links[0];
+		$links[0] = $settings_link;
+	}
+	return $links;
+}
+
+if ( is_admin() ) { add_action("admin_menu", "ie6w_menu"); }
 function ie6w_menu() {
 	add_options_page(__("Shockingly Big IE6 Warning Options", $ie6w_dom), __("S. Big IE6 Warning", $ie6w_dom), 8, __FILE__, "ie6w_options");
 }
 
 function ie6w_options() {
-	global $ie6w_dom;
+global $ie6w_dom;
+$ie6w_plug_name = "Shockingly Big IE6 Warning";
+$ie6w_plug_ver = "1.4.4";
+$ie6w_plug_url = "http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/";
 	if (isset($_POST['update_options'])) {
 		update_option("ie6w_type", $_POST["ie6w_form_type_opt"]);
 		update_option("ie6w_jq", $_POST["ie6w_form_jq_opt"]);
@@ -260,7 +276,7 @@ function ie6w_options() {
 	<p class="submit"><input type="submit" name="update_options" value="<?php echo __("Update", $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __("Default text", $ie6w_dom); ?>"/></p>
 	</form>
 	<p><?php echo __("<strong>Note</strong>: i'm still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me.", $ie6w_dom); ?></p>
-	<p><?php echo __("by <a href=\"mailto:matias@incerteza.org\">matias s.</a> at <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>", $ie6w_dom); ?></p>
+	<p><?php echo __("<a href=\"" . $ie6w_plug_url . "\">" . $ie6w_plug_name . " v" . $ie6w_plug_ver . "</a> by <a href=\"mailto:matias@incerteza.org\">matias s.</a> at <a href=\"http://www.incerteza.org/blog/\" target=\"_blank\" rel=\"nofollow\">incerteza.org</a>",$favi_dom); ?></p>
 	</div>
 <?php }
 

@@ -1,4 +1,4 @@
-/* 1.4.2 */
+/* 1.4.4 */
 jQuery(document).ready(function(){
 		jQuery("body").prepend('<div id="ie6w_div">' +  ie6w_t4 + '</div>');
 		jQuery("#ie6w_div").css({
