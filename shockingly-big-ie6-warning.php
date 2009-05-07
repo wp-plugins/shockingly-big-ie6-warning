@@ -105,7 +105,9 @@ function ie6w_head() {
 function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!--[if lte IE 6]>';
+	if ($opt['test'] != 'true') {
+		echo '<!--[if lte IE 6]>';
+	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
 		var ie6w_t1 = "' . $opt['texts']['t1'] . '";
@@ -123,13 +125,17 @@ function ie6w_head_top() {
 		var ie6w_ieu = "' . $opt['browsersu']['ie'] . '";
 		</script>
 		<script type="text/javascript" src="' . $ie6w_plug . 'js/ie6w_top.js"></script>';
-	//echo '<![endif]-->';
+	if ($opt['test'] != 'true') {
+		echo '<![endif]-->';
+	}
 }
 // CENTER HEADER
 function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!--[if lte IE 6]>';
+	if ($opt['test'] != 'true') {
+		echo '<!--[if lte IE 6]>';
+	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
 		var ie6w_t1 = "' . $opt['texts']['t1'] . '";
@@ -148,7 +154,9 @@ function ie6w_head_center() {
 		var ie6w_ieu = "' . $opt['browsersu']['ie'] . '";
 		</script>
 		<script type="text/javascript" src="' . $ie6w_plug . 'js/ie6w_center.js"></script>';
-	//echo '<![endif]-->';
+	if ($opt['test'] != 'true') {
+		echo '<![endif]-->';
+	}
 }
 
 // CRASH HEADER
