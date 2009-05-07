@@ -20,6 +20,7 @@ You can choose from 3 types of warning:
 
 **Recent Changes**
 
+* Conditional comments fixed
 * Fixed the CRASH mode
 * Some links errors
 * Almost everything recoded
