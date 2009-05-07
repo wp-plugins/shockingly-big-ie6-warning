@@ -22,8 +22,6 @@ You can choose from 3 types of warning:
 
 * Conditional comments fixed
 * Fixed the CRASH mode
-* Some links errors
-* Almost everything recoded
 * Now uses wordpress jQuery not an external .js
 * Browsers download urls now editable
 * Test mode, to preview the warning in any browser
