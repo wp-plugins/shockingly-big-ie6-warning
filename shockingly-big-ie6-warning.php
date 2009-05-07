@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Shockingly Big IE6 Warning
-Plugin URI: http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/
+Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6.
 Author: matias s.
-Version: 1.4.7
+Version: 1.4.8
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -186,8 +186,8 @@ function ie6w_menu() {
 function ie6w_options() {
 global $ie6w_dom;
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.4.7';
-$plug_site = 'http://wordpress.org/extend/plugins/shockingly-big-ie6-warning/';
+$plug_ver = '1.4.8';
+$plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 $opt = get_option('ie6w_options');
 	if (isset($_POST['update_options'])) {
 		$opt['type'] = $_POST['ie6w_form_type'];
