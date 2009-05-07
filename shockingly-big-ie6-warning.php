@@ -107,7 +107,7 @@ function ie6w_head_top() {
 	$opt = get_option('ie6w_options');
 	echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
 	if ($opt['test'] != 'true') {
-		echo '<!--[if lte IE 6]>';
+		echo '<!--[if lt IE 7]>';
 	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
@@ -136,7 +136,7 @@ function ie6w_head_center() {
 	$opt = get_option('ie6w_options');
 	echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
 	if ($opt['test'] != 'true') {
-		echo '<!--[if lte IE 6]>';
+		echo '<!--[if lt IE 7]>';
 	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
@@ -164,7 +164,7 @@ function ie6w_head_center() {
 // CRASH HEADER
 function ie6w_head_crash() {
 	echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	echo '<!--[if IE]><style>*{position:relative}</style><table><input></table>
+	echo '<!--[if lt IE 7]><style>*{position:relative}</style><table><input></table>
 	<STYLE>@;/*<![endif]-->';
 }
 
