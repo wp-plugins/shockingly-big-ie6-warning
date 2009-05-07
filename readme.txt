@@ -20,6 +20,7 @@ You can choose from 3 types of warning:
 
 **Recent Changes**
 
+* Fixed the CRASH mode
 * Some links erros
 * Almost everything recoded
 * Now uses wordpress jQuery not an external .js
