@@ -20,6 +20,10 @@ You can choose 3 type os warning:
 
 **Changelog**
 
+*1.4.8*
+
+* Some links errors
+
 *1.4.7*
 
 * Almost everything recoded
