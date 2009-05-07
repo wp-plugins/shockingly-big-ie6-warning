@@ -10,9 +10,9 @@ A shockingly BIG or SMALL warning message about the dangers of using IE6. And no
 
 == Description ==
 
-The *Shockingly Big IE6 Warning* is a plugin that shows a warning message alerting the user why is bad to use IE6, the security risk and the bad compatibility of Web Standards.
+The *Shockingly Big IE6 Warning* is a plugin that shows a warning message alerting the user why it is bad to use IE6, the security risk and the bad compatibility of Web Standards.
 
-You can choose 3 type os warning:
+You can choose from 3 types of warning:
 
 * TOP, a discreet top bar
 * FULL, a fullscreen warning
