@@ -1,4 +1,4 @@
-// 1.4.8
+// 1.4.9
 jQuery(document).ready(function(){
 if ((jQuery.browser.msie && jQuery.browser.version<='6.0') || (ie6w_test == 'true')) {
 		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_icon"><img src="' + ie6w_url + 'img/alert.gif" width="30" height="28" /></div><div id="ie6w_text"><strong><font color=RED>' + ie6w_t1 + '</font></strong>: ' + ie6w_t2 + '</div><div id="ie6w_browsers"></div></div>');
