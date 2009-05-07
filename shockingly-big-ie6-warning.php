@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 Description: A shockingly BIG or SMALL warning message about the dangers of using IE6.
 Author: matias s.
-Version: 1.4.9
+Version: 1.5.0
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -105,7 +105,10 @@ function ie6w_head() {
 function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!--[if lte IE 6]>';
+	echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
+	if ($opt['test'] != 'true') {
+		echo '<!--[if lt IE 7]>';
+	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
 		var ie6w_t1 = "' . $opt['texts']['t1'] . '";
@@ -123,13 +126,18 @@ function ie6w_head_top() {
 		var ie6w_ieu = "' . $opt['browsersu']['ie'] . '";
 		</script>
 		<script type="text/javascript" src="' . $ie6w_plug . 'js/ie6w_top.js"></script>';
-	//echo '<![endif]-->';
+	if ($opt['test'] != 'true') {
+		echo '<![endif]-->';
+	}
 }
 // CENTER HEADER
 function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!--[if lte IE 6]>';
+	echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
+	if ($opt['test'] != 'true') {
+		echo '<!--[if lt IE 7]>';
+	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
 		var ie6w_t1 = "' . $opt['texts']['t1'] . '";
@@ -148,12 +156,15 @@ function ie6w_head_center() {
 		var ie6w_ieu = "' . $opt['browsersu']['ie'] . '";
 		</script>
 		<script type="text/javascript" src="' . $ie6w_plug . 'js/ie6w_center.js"></script>';
-	//echo '<![endif]-->';
+	if ($opt['test'] != 'true') {
+		echo '<![endif]-->';
+	}
 }
 
 // CRASH HEADER
 function ie6w_head_crash() {
-	echo '<!--[if IE]><style>*{position:relative}</style><table><input></table>
+	echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
+	echo '<!--[if lt IE 7]><style>*{position:relative}</style><table><input></table>
 	<STYLE>@;/*<![endif]-->';
 }
 
@@ -186,7 +197,7 @@ function ie6w_menu() {
 function ie6w_options() {
 global $ie6w_dom;
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.4.9';
+$plug_ver = '1.5.0';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 $opt = get_option('ie6w_options');
 	if (isset($_POST['update_options'])) {

@@ -1,4 +1,4 @@
-// 1.4.9
+// 1.5.0
 jQuery(document).ready(function(){
 if ((jQuery.browser.msie && jQuery.browser.version<='6.0') || (ie6w_test == 'true')) {
 		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_frame"><div id="ie6w_t1">' + ie6w_t1 + '</div><div id="ie6w_t2">' + ie6w_t2 + '</div><div id="ie6w_t3">' + ie6w_t3 + '</div><div id="ie6w_browsers"></div></div></div>');
