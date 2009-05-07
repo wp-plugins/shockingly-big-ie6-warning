@@ -19,7 +19,6 @@ You can choose 3 type os warning:
 
 **Recent Changes**
 
-*1.4.8*
 * Some links errors
 * Almost everything recoded
 * Now uses wordpress jQuery not an external .js
