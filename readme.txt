@@ -21,7 +21,7 @@ You can choose from 3 types of warning:
 **Recent Changes**
 
 * Fixed the CRASH mode
-* Some links erros
+* Some links errors
 * Almost everything recoded
 * Now uses wordpress jQuery not an external .js
 * Browsers download urls now editable
