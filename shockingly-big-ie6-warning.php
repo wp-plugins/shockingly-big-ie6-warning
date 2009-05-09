@@ -32,7 +32,8 @@ $ie6w_plug = get_settings("siteurl") . "/wp-content/plugins/shockingly-big-ie6-w
 // ACTIVATION
 register_activation_hook( __FILE__, 'ie6w_activate' );
 function ie6w_activate() {
-	if (!(get_option('ie6w_setup')=='false')) {
+	$opt = get_option('ie6w_options');
+	if (!is_array($opt)) {
 		delete_option('ie6w_setup');
 		delete_option('ie6w_type');
 		delete_option('ie6w_jq');
@@ -44,7 +45,6 @@ function ie6w_activate() {
 		delete_option('ie6w_b_chrome');
 		delete_option('ie6w_b_safari');
 		delete_option('ie6w_b_ie7');
-		add_option('ie6w_setup', 'false');
 		$options = array(
 			'type' => 'top',
 			'test' => 'false',
@@ -75,8 +75,7 @@ function ie6w_activate() {
 // DEACTIVATION
 register_deactivation_hook( __FILE__, 'ie6w_deactivate' );
 function ie6w_deactivate() {
-	delete_option('ie6w_setup');
-	delete_option('ie6w_options');
+	//delete_option('ie6w_options');
 }
 
 // HEADERS
@@ -85,7 +84,7 @@ add_action('wp_head', ie6w_head);
 
 function ie6w_jquery() {
 	$opt = get_option('ie6w_options');
-	if (!($opt['type'] == 'off' || $opt['type'] == 'crash')) {
+	if ($opt['type'] == 'top' || $opt['type'] == 'center') {
 		wp_enqueue_script('jquery');
 	}
 }
@@ -106,8 +105,8 @@ function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
 	echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	if ($opt['test'] != 'true') {
-		echo '<!--[if lt IE 7]>';
+	if ($opt['test'] == 'false') {
+		echo '<!--[if lte IE 6]>';
 	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
@@ -126,7 +125,7 @@ function ie6w_head_top() {
 		var ie6w_ieu = "' . $opt['browsersu']['ie'] . '";
 		</script>
 		<script type="text/javascript" src="' . $ie6w_plug . 'js/ie6w_top.js"></script>';
-	if ($opt['test'] != 'true') {
+	if ($opt['test'] == 'false') {
 		echo '<![endif]-->';
 	}
 }
@@ -135,8 +134,8 @@ function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
 	echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	if ($opt['test'] != 'true') {
-		echo '<!--[if lt IE 7]>';
+	if ($opt['test'] == 'false') {
+		echo '<!--[if lte IE 6]>';
 	}
 	echo '<script type="text/javascript">
 		var ie6w_url = "' . $ie6w_plug . '";
@@ -156,15 +155,16 @@ function ie6w_head_center() {
 		var ie6w_ieu = "' . $opt['browsersu']['ie'] . '";
 		</script>
 		<script type="text/javascript" src="' . $ie6w_plug . 'js/ie6w_center.js"></script>';
-	if ($opt['test'] != 'true') {
+	if ($opt['test'] == 'false') {
 		echo '<![endif]-->';
 	}
 }
 
 // CRASH HEADER
 function ie6w_head_crash() {
+	$opt = get_option('ie6w_options');
 	echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	echo '<!--[if lt IE 7]><style>*{position:relative}</style><table><input></table>
+	echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table>
 	<STYLE>@;/*<![endif]-->';
 }
 
@@ -220,21 +220,29 @@ $opt = get_option('ie6w_options');
 		echo '<div id="message" class="updated fade"><p><strong>' . __('Options updated.', $ie6w_dom) . '</strong></p></div>';
     }
 	if (isset($_POST['reset_options'])) {
-		$opt['type'] = 'top';
-		$opt['test'] = 'false';
-		$opt['browsers']['firefox'] = 'true';
-		$opt['browsers']['opera'] = 'true';
-		$opt['browsers']['chrome'] = 'true';
-		$opt['browsers']['safari'] = 'true';
-		$opt['browsers']['ie'] = 'true';
-		$opt['browsersu']['firefox'] = 'http://www.getfirefox.net/';
-		$opt['browsersu']['opera'] = 'http://www.opera.com/';
-		$opt['browsersu']['chrome'] = 'http://www.google.com/chrome/';
-		$opt['browsersu']['safari'] = 'http://www.apple.com/safari/';
-		$opt['browsersu']['ie'] = 'http://www.microsoft.com/windows/ie/';
-		$opt['texts']['t1'] = 'WARNING';
-		$opt['texts']['t2'] = 'You are using Internet Explorer version 6.0 or lower. Due to security issues and lack of support for Web Standards it is highly recommended that you upgrade to a modern browser.';
-		$opt['texts']['t3'] = 'After the update you can acess this site normally.';
+		$opt = array(
+			'type' => 'top',
+			'test' => 'false',
+			'texts' => array(
+				't1' => 'WARNING',
+				't2' => 'You are using Internet Explorer version 6.0 or lower. Due to security issues and lack of support for Web Standards it is highly recommended that you upgrade to a modern browser.',
+				't3' => 'After the update you can acess this site normally.'
+			),
+			'browsers' => array(
+				'firefox' => 'true',
+				'opera' => 'true',
+				'chrome' => 'true',
+				'safari' => 'true',
+				'ie' => 'true',
+			),
+			'browsersu' => array(
+				'firefox' => 'http://www.getfirefox.net/',
+				'opera' => 'http://www.opera.com/',
+				'chrome' => 'http://www.google.com/chrome/',
+				'safari' => 'http://www.apple.com/safari/',
+				'ie' => 'http://www.microsoft.com/windows/ie/',
+			)
+		);
 		update_option("ie6w_options", $opt);
 	}
     ?>
@@ -316,20 +324,20 @@ $opt = get_option('ie6w_options');
       </tr></thead>
       <tr>
         <td width="125"><?php echo __('Title', $ie6w_dom); ?></td>
-        <td><input type="text" name="ie6w_form_t1" style="width:100%;" value="<?php echo $opt['texts']['t1']; ?>"/></td>
+        <td><input type="text" name="ie6w_form_t1" style="width:100%;" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t1'])); ?>"/></td>
       </tr>
       <tr>
         <td width="125"><?php echo __('Text', $ie6w_dom); ?></td>
-        <td><textarea name="ie6w_form_t2" rows="5" style="width:100%;"><?php echo $opt['texts']['t2']; ?></textarea></td>
+        <td><textarea name="ie6w_form_t2" rows="5" style="width:100%;"><?php echo stripslashes(htmlspecialchars($opt['texts']['t2'])); ?></textarea></td>
       </tr>
       <tr>
         <td width="125"><?php echo __('Observation', $ie6w_dom); ?></td>
-        <td><input type="text" name="ie6w_form_t3" style="width:100%;" value="<?php echo $opt['texts']['t3']; ?>"/></td>
+        <td><input type="text" name="ie6w_form_t3" style="width:100%;" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t3'])); ?>"/></td>
       </tr>
     </table>
 	<p class="submit"><input type="submit" name="update_options" value="<?php echo __('Update', $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __('Default options', $ie6w_dom); ?>"/></p>
 	</form>
-	<p><?php echo __('<strong>Note</strong>: im still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me.', $ie6w_dom); ?></p>
+	<p><?php echo __('<strong>Note</strong>: i\'m still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me.', $ie6w_dom); ?></p>
 	<p><?php echo __('<a href="' . $plug_site . '">' . $plug_name . ' v' . $plug_ver . '</a> by <a href="mailto:matias@incerteza.org">matias s.</a> at <a href="http://www.incerteza.org/blog/" target="_blank" rel="nofollow">incerteza.org</a>',$favi_dom); ?></p>
 	</div>
 <?php }
