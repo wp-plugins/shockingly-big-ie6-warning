@@ -4,9 +4,9 @@ Donate link: http://www.incerteza.org/blog/
 Tags: admin, warning, plugin, popup, ie6, ie, jQuery, internet explorer, microsoft, security
 Requires at least: 2.5
 Tested up to: 2.7.1
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
-A shockingly BIG or SMALL warning message about the dangers of using IE6. And now an option to crash IE6 and customize the message.
+A shockingly BIG or SMALL warning popup with customizable message about the dangers of using IE6. And now an option to crash IE6.
 
 == Description ==
 
@@ -20,11 +20,10 @@ You can choose from 3 types of warning:
 
 **Recent Changes**
 
+* Estetical changes in the option page and readme.txt
 * Now you can use HTML and special characters in the messages
 * TEST Mode code changed
 * Fixed the bug thet reseted the options of the plugin
-* Conditional comments fixed
-* Fixed the CRASH mode
 
 See the new [Shockingly Big IE6 Warning homepage](http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/ "Shockingly Big IE6 Warning") for further information.
 
@@ -32,15 +31,15 @@ Thanks for everyones suggestions!
 
 == Installation ==
 
-1. Upload the full directory into your /wp-content/plugins/ directory, or install it thought the admin interface
-2. Choose the type of warning and save
+1. Upload the full directory into your /wp-content/plugins/ directory, or install it through the admin interface
+2. Choose the type of warning in the option page and save
 3. DONE!
 
 == Frequently Asked Questions ==
 
 = Questions? =
 
-Any questions go to the plugin page in the Setting menu.
+Any questions go to the plugin [homepage](http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/ "Shockingly Big IE6 Warning") and leave a comment.
 
 == Screenshots ==
 

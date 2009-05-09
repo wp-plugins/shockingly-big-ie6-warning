@@ -2,9 +2,9 @@
 /*
 Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
-Description: A shockingly BIG or SMALL warning message about the dangers of using IE6.
-Author: matias s.
-Version: 1.5.1
+Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>.
+Author: matias s
+Version: 1.5.2
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -197,7 +197,7 @@ function ie6w_menu() {
 function ie6w_options() {
 global $ie6w_dom;
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.5.1';
+$plug_ver = '1.5.2';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 $opt = get_option('ie6w_options');
 	if (isset($_POST['update_options'])) {
@@ -217,7 +217,7 @@ $opt = get_option('ie6w_options');
 		if ($_POST['ie6w_form_safariu'] != "") { $opt['browsersu']['safari'] = $_POST['ie6w_form_safariu']; }
 		if ($_POST['ie6w_form_ieu'] != "") { $opt['browsersu']['ie'] = $_POST['ie6w_form_ieu']; }
 		update_option("ie6w_options", $opt);
-		echo '<div id="message" class="updated fade"><p><strong>' . __('Options updated.', $ie6w_dom) . '</strong></p></div>';
+		echo '<div id="message" class="updated fade"><p><strong>' . __('Options saved.', $ie6w_dom) . '</strong></p></div>';
     }
 	if (isset($_POST['reset_options'])) {
 		$opt = array(
@@ -244,6 +244,7 @@ $opt = get_option('ie6w_options');
 			)
 		);
 		update_option("ie6w_options", $opt);
+		echo '<div id="message" class="updated fade"><p><strong>' . __('Default options loaded.', $ie6w_dom) . '</strong></p></div>';
 	}
     ?>
 	<div class="wrap">
@@ -316,7 +317,7 @@ $opt = get_option('ie6w_options');
         <td><input type="text" name="ie6w_form_ieu" style="width:100%;" value="<?php echo $opt['browsersu']['ie']; ?>"/></td>
       </tr>
     </table>
-	<h2><?php echo __('Warning', $ie6w_dom); ?></h2>
+	<h2><?php echo __('Warning Message', $ie6w_dom); ?></h2>
 	<table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
       <thead><tr>
         <th width="125"><?php echo __('Field', $ie6w_dom); ?></th>
@@ -335,10 +336,11 @@ $opt = get_option('ie6w_options');
         <td><input type="text" name="ie6w_form_t3" style="width:100%;" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t3'])); ?>"/></td>
       </tr>
     </table>
-	<p class="submit"><input type="submit" name="update_options" value="<?php echo __('Update', $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __('Default options', $ie6w_dom); ?>"/></p>
+	<p class="submit"><input type="submit" name="update_options" value="<?php echo __('Save', $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __('Reset options', $ie6w_dom); ?>"/></p>
 	</form>
-	<p><?php echo __('<strong>Note</strong>: i\'m still learning PHP & Wordpress coding and im using this plugin to study, so if you have any idea or any kind of suggestion please contact me.', $ie6w_dom); ?></p>
-	<p><?php echo __('<a href="' . $plug_site . '">' . $plug_name . ' v' . $plug_ver . '</a> by <a href="mailto:matias@incerteza.org">matias s.</a> at <a href="http://www.incerteza.org/blog/" target="_blank" rel="nofollow">incerteza.org</a>',$favi_dom); ?></p>
+	<hr />
+	<p><?php echo __('<strong>Note</strong>: i\'m learning PHP & Wordpress coding and using this plugin to study, so if you have any idea or any kind of suggestion please contact me.', $sqr_dom); ?></p>
+    <p><?php echo __('<a href="' . $plug_site . '">' . $plug_name . ' v' . $plug_ver . '</a> by <a href="mailto:matias@incerteza.org">matias s.</a> at <a href="http://www.incerteza.org/blog/" target="_blank" rel="nofollow">incerteza.org</a>',$favi_dom); ?></p>
 	</div>
 <?php }
 ?>
