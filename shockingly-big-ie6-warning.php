@@ -70,7 +70,7 @@ function ie6w_activate() {
 		);
 		add_option('ie6w_options', $options);
 	} else {
-		update_option("ie6w_options", $options);
+		//update_option("ie6w_options", $options);
 	}
 }
 
