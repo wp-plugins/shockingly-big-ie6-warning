@@ -57,7 +57,7 @@ if ((jQuery.browser.msie && jQuery.browser.version<='6.0') || (ie6w_test == 'tru
 			"height": "28px",
 			"width": "146px",
 			//"background-color": "#999999",
-			"padding": "3px",
+			"padding": "3px"
 		}).width((ie6w_b *28)+12);
 		jQuery('#ie6w_div #ie6w_text').css({
 			"overflow": "hidden",
