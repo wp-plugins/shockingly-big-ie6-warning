@@ -1,0 +1,149 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shockingly-big-ie6-warning\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-05-16 20:04-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: matias s. <matias@incerteza.org>\n"
+"Language-Team: matias s. <matias@incerteza.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../shockingly-big-ie6-warning.php:175
+#: ../shockingly-big-ie6-warning.php:220
+#: ../shockingly-big-ie6-warning.php:224
+msgid "Settings"
+msgstr "Configurações"
+
+#: ../shockingly-big-ie6-warning.php:185
+#: ../shockingly-big-ie6-warning.php:219
+msgid "Shockingly Big IE6 Warning Options"
+msgstr "Opções Shockingly Big IE6 Warning"
+
+#: ../shockingly-big-ie6-warning.php:185
+msgid "S. Big IE6 Warning"
+msgstr "S. Big IE6 Warning"
+
+#: ../shockingly-big-ie6-warning.php:210
+msgid "Settings saved."
+msgstr "Opções salvas."
+
+#: ../shockingly-big-ie6-warning.php:215
+msgid "Default options loaded."
+msgstr "Opções padrão carregadas."
+
+#: ../shockingly-big-ie6-warning.php:226
+msgid "Description"
+msgstr "Descrição"
+
+#: ../shockingly-big-ie6-warning.php:229
+msgid "Warning type"
+msgstr "Tipo de aviso"
+
+#: ../shockingly-big-ie6-warning.php:231
+#: ../shockingly-big-ie6-warning.php:241
+msgid "Off"
+msgstr "Desligado"
+
+#: ../shockingly-big-ie6-warning.php:232
+msgid "Top"
+msgstr "Topo"
+
+#: ../shockingly-big-ie6-warning.php:233
+msgid "Center"
+msgstr "Central"
+
+#: ../shockingly-big-ie6-warning.php:234
+msgid "Crash"
+msgstr "Travar"
+
+#: ../shockingly-big-ie6-warning.php:236
+msgid "The type of warning that will be showed. <strong>Top</strong>, the discreet top bar. <strong>Center</strong>, the full screen one. <strong>Crash</strong>, the mean option."
+msgstr "O tipo de aviso que será mostrado. <strong>Topo</strong>, uma discreta barra no topo da janela. <strong>Central</strong>, um aviso de tela cheia. <strong>Travar</strong>, a opção malvada."
+
+#: ../shockingly-big-ie6-warning.php:239
+msgid "Test mode"
+msgstr "Modo de teste"
+
+#: ../shockingly-big-ie6-warning.php:242
+msgid "On"
+msgstr "Ligado"
+
+#: ../shockingly-big-ie6-warning.php:244
+msgid "Turn this <strong>On</strong> if you want to test the Warnings in any browser."
+msgstr "Selecione <strong>Ligado</strong> se você quer testar o aviso em qualquer navegador."
+
+#: ../shockingly-big-ie6-warning.php:248
+msgid "Browsers"
+msgstr "Navegadores"
+
+#: ../shockingly-big-ie6-warning.php:250
+msgid "URL"
+msgstr "URL"
+
+#: ../shockingly-big-ie6-warning.php:255
+#: ../shockingly-big-ie6-warning.php:262
+#: ../shockingly-big-ie6-warning.php:269
+#: ../shockingly-big-ie6-warning.php:276
+#: ../shockingly-big-ie6-warning.php:283
+msgid "Show"
+msgstr "Mostrar"
+
+#: ../shockingly-big-ie6-warning.php:256
+#: ../shockingly-big-ie6-warning.php:263
+#: ../shockingly-big-ie6-warning.php:270
+#: ../shockingly-big-ie6-warning.php:277
+#: ../shockingly-big-ie6-warning.php:284
+msgid "Hide"
+msgstr "Esconder"
+
+#: ../shockingly-big-ie6-warning.php:288
+msgid "Warning Message"
+msgstr "Mensagem de Aviso"
+
+#: ../shockingly-big-ie6-warning.php:291
+msgid "Field"
+msgstr "Campo"
+
+#: ../shockingly-big-ie6-warning.php:292
+#: ../shockingly-big-ie6-warning.php:299
+msgid "Text"
+msgstr "Texto"
+
+#: ../shockingly-big-ie6-warning.php:295
+msgid "Title"
+msgstr "Título"
+
+#: ../shockingly-big-ie6-warning.php:303
+msgid "Observation"
+msgstr "Observação"
+
+#: ../shockingly-big-ie6-warning.php:307
+msgid "Save Changes"
+msgstr "Salvar Mudanças"
+
+#: ../shockingly-big-ie6-warning.php:307
+msgid "Reset Options"
+msgstr "Recarregar Opções"
+
+#: ../shockingly-big-ie6-warning.php:310
+msgid "<strong>Note</strong>: i'm learning PHP & Wordpress coding and using this plugin to study, so if you have any idea or any kind of suggestion please contact me."
+msgstr "<strong>Nota</strong>: estou aprendendo PHP & codificação Wordpress e usando este plugin para estudar, então se você tiver qualquer idéia ou sugestão entre em contato."
+
+#: ../shockingly-big-ie6-warning.php:311
+msgid "by"
+msgstr "por"
+
+#: ../shockingly-big-ie6-warning.php:311
+msgid "at"
+msgstr "de"
+
+#~ msgid "Setting"
+#~ msgstr "Configuração"
+

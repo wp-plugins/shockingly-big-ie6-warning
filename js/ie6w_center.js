@@ -1,4 +1,4 @@
-// 1.5.4
+// 1.5.5
 jQuery(document).ready(function(){
 if ((jQuery.browser.msie && jQuery.browser.version<=6) || (ie6w.test == 'true')) {
 		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_frame"><div id="ie6w_t1">' + ie6w.t1 + '</div><div id="ie6w_t2">' + ie6w.t2 + '</div><div id="ie6w_t3">' + ie6w.t3 + '</div><div id="ie6w_browsers"></div></div></div>');
@@ -6,15 +6,15 @@ if ((jQuery.browser.msie && jQuery.browser.version<=6) || (ie6w.test == 'true'))
 			"position": "fixed",
 			"overflow": "hidden",
 			"z-index": "1000",
-			"left": "15px",
-			"top": "15px",
+			"left": "0px",
+			"top": "0px",
 			"height": "100%",
 			"width": "1000",
 			"background-color": "#000000",
 			"font-family": "Verdana, Arial, Helvetica, sans-serif",
 			"font-size": "11px",
 			"color": "#000000"
-		}).width(jQuery(window).width()-30).height(jQuery(window).height()-30);
+		}).width(jQuery(window).width()).height(jQuery(window).height());
 		jQuery('#ie6w_div #ie6w_frame').css({
 			"position": "absolute",
 			"overflow": "hidden",
