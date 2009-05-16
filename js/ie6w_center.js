@@ -59,7 +59,7 @@ if ((jQuery.browser.msie && jQuery.browser.version<='6.0') || (ie6w_test == 'tru
 				"color": "#000000",
 				"text-align": "justify"
 		}).width(jQuery('#ie6w_div #ie6w_frame').width() - 50).css({
-				"top": (jQuery('#ie6w_div #ie6w_frame #ie6w_t2').outerHeight() + 95 + 20) + "px",
+				"top": (jQuery('#ie6w_div #ie6w_frame #ie6w_t2').outerHeight() + 95 + 20) + "px"
 		});
 		var ie6w_b = 0;
 		if(ie6w_ie=='true') {
