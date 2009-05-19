@@ -188,7 +188,7 @@ function ie6w_options() {
 global $ie6w_dom;
 $opt = get_option('ie6w_options');
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.5.5';
+$plug_ver = '1.5.6';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 	if ( isset($_POST['update_options']) ) {
 		$opt['type'] = $_POST['ie6w_form_type'];
