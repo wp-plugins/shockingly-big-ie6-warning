@@ -25,6 +25,91 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+// FUNCTION: browser_detection - taken from here: http://techpatterns.com/downloads/php_browser_detection.php
+function browser_detection( $which_test ) {
+	// initialize variables
+	$browser_name = '';
+	$browser_number = '';
+	// get userAgent string
+	$browser_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
+	//pack browser array
+	// values [0]= user agent identifier, lowercase, [1] = dom browser, [2] = shorthand for browser,
+	$a_browser_types[] = array('opera', true, 'op' );
+	$a_browser_types[] = array('msie', true, 'ie' );
+	$a_browser_types[] = array('konqueror', true, 'konq' );
+	$a_browser_types[] = array('safari', true, 'saf' );
+	$a_browser_types[] = array('gecko', true, 'moz' );
+	$a_browser_types[] = array('mozilla/4', false, 'ns4' );
+	# this will set a default 'unknown' value
+	$a_browser_types[] = array('other', false, 'other' );
+
+	$i_count = count($a_browser_types);
+	for ($i = 0; $i < $i_count; $i++)
+	{
+		$s_browser = $a_browser_types[$i][0];
+		$b_dom = $a_browser_types[$i][1];
+		$browser_name = $a_browser_types[$i][2];
+		// if the string identifier is found in the string
+		if (stristr($browser_user_agent, $s_browser)) 
+		{
+			// we are in this case actually searching for the 'rv' string, not the gecko string
+			// this test will fail on Galeon, since it has no rv number. You can change this to 
+			// searching for 'gecko' if you want, that will return the release date of the browser
+			if ( $browser_name == 'moz' )
+			{
+				$s_browser = 'rv';
+			}
+			$browser_number = browser_version( $browser_user_agent, $s_browser );
+			break;
+		}
+	}
+	// which variable to return
+	if ( $which_test == 'browser' )
+	{
+		return $browser_name;
+	}
+	elseif ( $which_test == 'number' )
+	{
+		# this will be null for default other category, so make sure to test for null
+		return $browser_number;
+	}
+
+	/* this returns both values, then you only have to call the function once, and get
+	 the information from the variable you have put it into when you called the function */
+	elseif ( $which_test == 'full' )
+	{
+		$a_browser_info = array( $browser_name, $browser_number );
+		return $a_browser_info;
+	}
+}
+
+// function returns browser number or gecko rv number
+// this function is called by above function, no need to mess with it unless you want to add more features
+function browser_version( $browser_user_agent, $search_string )
+{
+	$string_length = 8;// this is the maximum  length to search for a version number
+	//initialize browser number, will return '' if not found
+	$browser_number = '';
+
+	// which parameter is calling it determines what is returned
+	$start_pos = strpos( $browser_user_agent, $search_string );
+	
+	// start the substring slice 1 space after the search string
+	$start_pos += strlen( $search_string ) + 1;
+	
+	// slice out the largest piece that is numeric, going down to zero, if zero, function returns ''.
+	for ( $i = $string_length; $i > 0 ; $i-- )
+	{
+		// is numeric makes sure that the whole substring is a number
+		if ( is_numeric( substr( $browser_user_agent, $start_pos, $i ) ) )
+		{
+			$browser_number = substr( $browser_user_agent, $start_pos, $i );
+			break;
+		}
+	}
+	return $browser_number;
+}
+
 // Global Variables
 $ie6w_dom = "shockingly-big-ie6-warning";
 $ie6w_plug = get_settings("siteurl") . "/wp-content/plugins/shockingly-big-ie6-warning/";
@@ -104,24 +189,27 @@ function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
 	//echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
-	wp_localize_script('ie6w_head_top', 'ie6w', array(
-		'url' => $ie6w_plug,
-		'test' => $opt['test'],
-		't1' => $opt['texts']['t1'],
-		't2' => $opt['texts']['t2'],
-		'firefox' => $opt['browsers']['firefox'],
-		'opera' => $opt['browsers']['opera'],
-		'chrome' => $opt['browsers']['chrome'],
-		'safari' => $opt['browsers']['safari'],
-		'ie' => $opt['browsers']['ie'],
-		'firefoxu' => $opt['browsersu']['firefox'],
-		'operau' => $opt['browsersu']['opera'],
-		'chromeu' => $opt['browsersu']['chrome'],
-		'safariu' => $opt['browsersu']['safari'],
-		'ieu' => $opt['browsersu']['ie']
-	));
+	$a_browser_data = browser_detection('full');
+	if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
+		wp_localize_script('ie6w_head_top', 'ie6w', array(
+			'url' => $ie6w_plug,
+			'test' => $opt['test'],
+			't1' => $opt['texts']['t1'],
+			't2' => $opt['texts']['t2'],
+			'firefox' => $opt['browsers']['firefox'],
+			'opera' => $opt['browsers']['opera'],
+			'chrome' => $opt['browsers']['chrome'],
+			'safari' => $opt['browsers']['safari'],
+			'ie' => $opt['browsers']['ie'],
+			'firefoxu' => $opt['browsersu']['firefox'],
+			'operau' => $opt['browsersu']['opera'],
+			'chromeu' => $opt['browsersu']['chrome'],
+			'safariu' => $opt['browsersu']['safari'],
+			'ieu' => $opt['browsersu']['ie']
+		));
+	}
 }
 
 // HEADER: CENTER
@@ -129,25 +217,28 @@ function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
 	//echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
-	wp_localize_script('ie6w_head_center', 'ie6w', array(
-		'url' => $ie6w_plug,
-		'test' => $opt['test'],
-		't1' => $opt['texts']['t1'],
-		't2' => $opt['texts']['t2'],
-		't3' => $opt['texts']['t3'],
-		'firefox' => $opt['browsers']['firefox'],
-		'opera' => $opt['browsers']['opera'],
-		'chrome' => $opt['browsers']['chrome'],
-		'safari' => $opt['browsers']['safari'],
-		'ie' => $opt['browsers']['ie'],
-		'firefoxu' => $opt['browsersu']['firefox'],
-		'operau' => $opt['browsersu']['opera'],
-		'chromeu' => $opt['browsersu']['chrome'],
-		'safariu' => $opt['browsersu']['safari'],
-		'ieu' => $opt['browsersu']['ie']
-	));
+	$a_browser_data = browser_detection('full');
+	if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
+		wp_localize_script('ie6w_head_center', 'ie6w', array(
+			'url' => $ie6w_plug,
+			'test' => $opt['test'],
+			't1' => $opt['texts']['t1'],
+			't2' => $opt['texts']['t2'],
+			't3' => $opt['texts']['t3'],
+			'firefox' => $opt['browsers']['firefox'],
+			'opera' => $opt['browsers']['opera'],
+			'chrome' => $opt['browsers']['chrome'],
+			'safari' => $opt['browsers']['safari'],
+			'ie' => $opt['browsers']['ie'],
+			'firefoxu' => $opt['browsersu']['firefox'],
+			'operau' => $opt['browsersu']['opera'],
+			'chromeu' => $opt['browsersu']['chrome'],
+			'safariu' => $opt['browsersu']['safari'],
+			'ieu' => $opt['browsersu']['ie']
+		));
+	}
 }
 
 // HEADER: CRASH
