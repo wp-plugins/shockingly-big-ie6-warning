@@ -84,6 +84,7 @@ function ie6w_default_opt() {
 	$setup = array(
 		'type' => 'top',
 		'test' => 'false',
+		'phptest' => 'false',
 		'texts' => array(
 			't1' => 'WARNING',
 			't2' => 'You are using Internet Explorer version 6.0 or lower. Due to security issues and lack of support for Web Standards it is highly recommended that you upgrade to a modern browser.',
@@ -153,9 +154,29 @@ function ie6w_head() {
 function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	$a_browser_data = browser_detection('full');
-	if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+	if ( $opt['phptest'] == 'true' ) {
+		$a_browser_data = browser_detection('full');
+		if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
+			wp_localize_script('ie6w_head_top', 'ie6w', array(
+				'url' => $ie6w_plug,
+				'test' => $opt['test'],
+				't1' => $opt['texts']['t1'],
+				't2' => $opt['texts']['t2'],
+				'firefox' => $opt['browsers']['firefox'],
+				'opera' => $opt['browsers']['opera'],
+				'chrome' => $opt['browsers']['chrome'],
+				'safari' => $opt['browsers']['safari'],
+				'ie' => $opt['browsers']['ie'],
+				'firefoxu' => $opt['browsersu']['firefox'],
+				'operau' => $opt['browsersu']['opera'],
+				'chromeu' => $opt['browsersu']['chrome'],
+				'safariu' => $opt['browsersu']['safari'],
+				'ieu' => $opt['browsersu']['ie']
+			));
+		}
+	} else {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
 		wp_localize_script('ie6w_head_top', 'ie6w', array(
@@ -181,9 +202,30 @@ function ie6w_head_top() {
 function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	$a_browser_data = browser_detection('full');
-	if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+	if ( $opt['phptest'] == 'true' ) {
+		$a_browser_data = browser_detection('full');
+		if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
+			wp_localize_script('ie6w_head_center', 'ie6w', array(
+				'url' => $ie6w_plug,
+				'test' => $opt['test'],
+				't1' => $opt['texts']['t1'],
+				't2' => $opt['texts']['t2'],
+				't3' => $opt['texts']['t3'],
+				'firefox' => $opt['browsers']['firefox'],
+				'opera' => $opt['browsers']['opera'],
+				'chrome' => $opt['browsers']['chrome'],
+				'safari' => $opt['browsers']['safari'],
+				'ie' => $opt['browsers']['ie'],
+				'firefoxu' => $opt['browsersu']['firefox'],
+				'operau' => $opt['browsersu']['opera'],
+				'chromeu' => $opt['browsersu']['chrome'],
+				'safariu' => $opt['browsersu']['safari'],
+				'ieu' => $opt['browsersu']['ie']
+			));
+		}
+	} else {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
 		wp_localize_script('ie6w_head_center', 'ie6w', array(
@@ -209,8 +251,11 @@ function ie6w_head_center() {
 // HEADER: CRASH
 function ie6w_head_crash() {
 	$opt = get_option('ie6w_options');
-	//echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	if ( $a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6 ) {
+	if ( $opt['phptest'] == 'true' ) {
+		if ( $a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6 ) {
+			echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table><STYLE>@;/*<![endif]-->';
+		}
+	} else {
 		echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table><STYLE>@;/*<![endif]-->';
 	}
 }
