@@ -345,7 +345,7 @@ $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
                     <option value="false" <?php if ( $opt['phptest'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Off', $ie6w_dom); ?></option>
                     <option value="true" <?php if ( $opt['phptest'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('On', $ie6w_dom); ?></option>
                     </select></td>
-        <td><?php echo __('Turn this <strong>On</strong> if you are having some kind of trouble, like layout errors, when this plugin is <strong>On</strong>, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>.', $ie6w_dom); ?></td>
+        <td><?php echo __('Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>.', $ie6w_dom); ?></td>
       </tr>
 
       <tr>

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shockingly-big-ie6-warning\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-20 15:45-0300\n"
+"POT-Creation-Date: 2009-05-20 15:50-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: matias s. <matias@incerteza.org>\n"
 "Language-Team: matias s. <matias@incerteza.org>\n"
@@ -78,8 +78,8 @@ msgid "On"
 msgstr "Ligado"
 
 #: ../shockingly-big-ie6-warning.php:348
-msgid "Turn this <strong>On</strong> if you are having some kind of trouble, like layout errors, when this plugin is <strong>On</strong>, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>."
-msgstr "Selecione <strong>Ligado</strong> se você está tendo algum problema, como erros de layout, quando este plugin está <strong>Ligado</strong>, então uma função PHP irá inserir o código <strong>somente</strong> se você estiver usando o <strong>IE6</strong>."
+msgid "Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>."
+msgstr "Selecione Ligado <strong>somente</strong> se você está tendo algum problema, como erros de layout, quando este plugin está Ligado, então uma função PHP irá inserir o código <strong>somente</strong> se você estiver usando o <strong>IE6</strong>."
 
 #: ../shockingly-big-ie6-warning.php:352
 msgid "Test mode"
