@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>.
 Author: matias s
-Version: 1.5.6
+Version: 1.5.7
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -103,7 +103,7 @@ function ie6w_head() {
 function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
+	//echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
 	wp_localize_script('ie6w_head_top', 'ie6w', array(
@@ -128,7 +128,7 @@ function ie6w_head_top() {
 function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
+	//echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
 	wp_localize_script('ie6w_head_center', 'ie6w', array(
@@ -153,7 +153,7 @@ function ie6w_head_center() {
 // HEADER: CRASH
 function ie6w_head_crash() {
 	$opt = get_option('ie6w_options');
-	echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
+	//echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
 	echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table>
 	<STYLE>@;/*<![endif]-->';
 }
@@ -188,7 +188,7 @@ function ie6w_options() {
 global $ie6w_dom;
 $opt = get_option('ie6w_options');
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.5.6';
+$plug_ver = '1.5.7';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 	if ( isset($_POST['update_options']) ) {
 		$opt['type'] = $_POST['ie6w_form_type'];
@@ -219,7 +219,7 @@ $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 	<h2><?php echo __("Shockingly Big IE6 Warning Options", $ie6w_dom); ?></h2>
 	<h2><?php echo __("Settings", $ie6w_dom); ?></h2>
 	<form method="post" name="options" target="_self">
-    <table width="100%" cellspacing="0" class="widefat">
+    <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
       <thead><tr>
         <th width="125"><?php echo __('Settings', $ie6w_dom); ?></th>
         <th width="125">&nbsp;</th>
@@ -254,54 +254,54 @@ $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
         <td width="125"><select name="ie6w_form_firefox" style="width: 100px">
                     <option value="true" <?php if ( $opt['browsers']['firefox'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('Show', $ie6w_dom); ?></option>
                     <option value="false" <?php if ( $opt['browsers']['firefox'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Hide', $ie6w_dom); ?></option></select></td>
-        <td><input type="text" name="ie6w_form_firefoxu" style="width:100%;" class="widefat" value="<?php echo $opt['browsersu']['firefox']; ?>" /></td>
+        <td><input type="text" name="ie6w_form_firefoxu" style="width:100%;" value="<?php echo $opt['browsersu']['firefox']; ?>" /></td>
       </tr>
       <tr>
         <td width="125">Opera</td>
         <td width="125"><select name="ie6w_form_opera" style="width: 100px">
                     <option value="true" <?php if ( $opt['browsers']['opera'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('Show', $ie6w_dom); ?></option>
                     <option value="false" <?php if ( $opt['browsers']['opera'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Hide', $ie6w_dom); ?></option></select></td>
-        <td><input type="text" name="ie6w_form_operau" style="width:100%;" class="widefat" value="<?php echo $opt['browsersu']['opera']; ?>" /></td>
+        <td><input type="text" name="ie6w_form_operau" style="width:100%;" value="<?php echo $opt['browsersu']['opera']; ?>" /></td>
       </tr>
       <tr>
         <td width="125">Google Chrome</td>
         <td width="125"><select name="ie6w_form_chrome" style="width: 100px">
                     <option value="true" <?php if ( $opt['browsers']['chrome'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('Show', $ie6w_dom); ?></option>
                     <option value="false" <?php if ( $opt['browsers']['chrome'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Hide', $ie6w_dom); ?></option></select></td>
-        <td><input type="text" name="ie6w_form_chromeu" style="width:100%;" class="widefat" value="<?php echo $opt['browsersu']['chrome']; ?>" /></td>
+        <td><input type="text" name="ie6w_form_chromeu" style="width:100%;" value="<?php echo $opt['browsersu']['chrome']; ?>" /></td>
       </tr>
       <tr>
         <td>Apple Safari</td>
         <td><select name="ie6w_form_safari" style="width: 100px">
                     <option value="true" <?php if ( $opt['browsers']['safari'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('Show', $ie6w_dom); ?></option>
                     <option value="false" <?php if ( $opt['browsers']['safari'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Hide', $ie6w_dom); ?></option></select></td>
-        <td><input type="text" name="ie6w_form_safariu" style="width:100%;" class="widefat" value="<?php echo $opt['browsersu']['safari']; ?>" /></td>
+        <td><input type="text" name="ie6w_form_safariu" style="width:100%;" value="<?php echo $opt['browsersu']['safari']; ?>" /></td>
       </tr>
       <tr>
         <td width="125">Internet Explorer</td>
         <td width="125"><select name="ie6w_form_ie" style="width: 100px">
                     <option value="true" <?php if ( $opt['browsers']['ie'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('Show', $ie6w_dom); ?></option>
                     <option value="false" <?php if ( $opt['browsers']['ie'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Hide', $ie6w_dom); ?></option></select></td>
-        <td><input type="text" name="ie6w_form_ieu" style="width:100%;" class="widefat" value="<?php echo $opt['browsersu']['ie']; ?>" /></td>
+        <td><input type="text" name="ie6w_form_ieu" style="width:100%;" value="<?php echo $opt['browsersu']['ie']; ?>" /></td>
       </tr>
     </table>
 	<h2><?php echo __('Warning Message', $ie6w_dom); ?></h2>
-	<table width="100%" cellspacing="0" class="widefat">
+	<table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
       <thead><tr>
         <th width="125"><?php echo __('Field', $ie6w_dom); ?></th>
         <th><?php echo __('Text', $ie6w_dom); ?></th>
       </tr></thead>
       <tr>
         <td width="125"><?php echo __('Title', $ie6w_dom); ?></td>
-        <td><input type="text" name="ie6w_form_t1" style="width:100%;" class="widefat" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t1'])); ?>" /></td>
+        <td><input type="text" name="ie6w_form_t1" style="width:100%;" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t1'])); ?>" /></td>
       </tr>
       <tr>
         <td width="125"><?php echo __('Text', $ie6w_dom); ?></td>
-        <td><textarea name="ie6w_form_t2" rows="5" style="width:100%;" class="widefat"><?php echo stripslashes(htmlspecialchars($opt['texts']['t2'])); ?></textarea></td>
+        <td><textarea name="ie6w_form_t2" rows="5" style="width:100%;"><?php echo stripslashes(htmlspecialchars($opt['texts']['t2'])); ?></textarea></td>
       </tr>
       <tr>
         <td width="125"><?php echo __('Observation', $ie6w_dom); ?></td>
-        <td><input type="text" name="ie6w_form_t3" style="width:100%;" class="widefat" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t3'])); ?>" /></td>
+        <td><input type="text" name="ie6w_form_t3" style="width:100%;" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t3'])); ?>" /></td>
       </tr>
     </table>
 	<p class="submit"><input type="submit" name="update_options" class="button-primary" value="<?php echo __('Save Changes', $ie6w_dom); ?>"/> <input type="submit" name="reset_options" value="<?php echo __('Reset Options', $ie6w_dom); ?>"/></p>

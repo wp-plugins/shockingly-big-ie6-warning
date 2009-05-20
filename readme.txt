@@ -20,7 +20,8 @@ You can choose from 3 types of warning:
 
 **Recent Changes**
 
-* Some options page styles fixed
+* Ready for localization (pt_BR already done)
+* Fixed the JS error, was just a comma misplaced
 
 See the new [Shockingly Big IE6 Warning homepage](http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/ "Shockingly Big IE6 Warning") for further information.
 
