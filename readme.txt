@@ -21,6 +21,11 @@ You can choose from 3 types of warning:
 **Recent Changes**
 
 * Blank Options Page fixed(?)
+* ie6 PHP detection function inserted, for those with layout errors
+
+**Attention**
+
+If updating from previous version, after update press the *Reset Options* button on the plugin Options Page.
 
 See the new [Shockingly Big IE6 Warning homepage](http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/ "Shockingly Big IE6 Warning") for further information.
 

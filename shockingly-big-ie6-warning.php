@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>.
 Author: matias s
-Version: 1.5.7
+Version: 1.5.8
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -25,6 +25,56 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+// FUNCTION: browser_detection - taken from here: http://techpatterns.com/downloads/php_browser_detection.php
+function browser_detection( $which_test ) {
+	$browser_name = '';
+	$browser_number = '';
+	$browser_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
+	$a_browser_types[] = array('opera', true, 'op' );
+	$a_browser_types[] = array('msie', true, 'ie' );
+	$a_browser_types[] = array('konqueror', true, 'konq' );
+	$a_browser_types[] = array('safari', true, 'saf' );
+	$a_browser_types[] = array('gecko', true, 'moz' );
+	$a_browser_types[] = array('mozilla/4', false, 'ns4' );
+	$a_browser_types[] = array('other', false, 'other' );
+	$i_count = count($a_browser_types);
+	for ($i = 0; $i < $i_count; $i++) {
+		$s_browser = $a_browser_types[$i][0];
+		$b_dom = $a_browser_types[$i][1];
+		$browser_name = $a_browser_types[$i][2];
+		if (stristr($browser_user_agent, $s_browser)) {
+			if ( $browser_name == 'moz' ) {
+				$s_browser = 'rv';
+			}
+			$browser_number = browser_version( $browser_user_agent, $s_browser );
+			break;
+		}
+	}
+	if ( $which_test == 'browser' ) {
+		return $browser_name;
+	}
+	elseif ( $which_test == 'number' ) {
+		return $browser_number;
+	}
+	elseif ( $which_test == 'full' ) {
+		$a_browser_info = array( $browser_name, $browser_number );
+		return $a_browser_info;
+	}
+}
+function browser_version( $browser_user_agent, $search_string ) {
+	$string_length = 8;
+	$browser_number = '';
+	$start_pos = strpos( $browser_user_agent, $search_string );
+	$start_pos += strlen( $search_string ) + 1;
+	for ( $i = $string_length; $i > 0 ; $i-- ) {
+		if ( is_numeric( substr( $browser_user_agent, $start_pos, $i ) ) ) {
+			$browser_number = substr( $browser_user_agent, $start_pos, $i );
+			break;
+		}
+	}
+	return $browser_number;
+}
+
 // Global Variables
 $ie6w_dom = "shockingly-big-ie6-warning";
 $ie6w_plug = get_settings("siteurl") . "/wp-content/plugins/shockingly-big-ie6-warning/";
@@ -34,6 +84,7 @@ function ie6w_default_opt() {
 	$setup = array(
 		'type' => 'top',
 		'test' => 'false',
+		'phptest' => 'false',
 		'texts' => array(
 			't1' => 'WARNING',
 			't2' => 'You are using Internet Explorer version 6.0 or lower. Due to security issues and lack of support for Web Standards it is highly recommended that you upgrade to a modern browser.',
@@ -103,59 +154,111 @@ function ie6w_head() {
 function ie6w_head_top() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!-- ie6w TOP ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
-	wp_localize_script('ie6w_head_top', 'ie6w', array(
-		'url' => $ie6w_plug,
-		'test' => $opt['test'],
-		't1' => $opt['texts']['t1'],
-		't2' => $opt['texts']['t2'],
-		'firefox' => $opt['browsers']['firefox'],
-		'opera' => $opt['browsers']['opera'],
-		'chrome' => $opt['browsers']['chrome'],
-		'safari' => $opt['browsers']['safari'],
-		'ie' => $opt['browsers']['ie'],
-		'firefoxu' => $opt['browsersu']['firefox'],
-		'operau' => $opt['browsersu']['opera'],
-		'chromeu' => $opt['browsersu']['chrome'],
-		'safariu' => $opt['browsersu']['safari'],
-		'ieu' => $opt['browsersu']['ie']
-	));
+	if ( $opt['phptest'] == 'true' ) {
+		$a_browser_data = browser_detection('full');
+		if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
+			wp_localize_script('ie6w_head_top', 'ie6w', array(
+				'url' => $ie6w_plug,
+				'test' => $opt['test'],
+				't1' => $opt['texts']['t1'],
+				't2' => $opt['texts']['t2'],
+				'firefox' => $opt['browsers']['firefox'],
+				'opera' => $opt['browsers']['opera'],
+				'chrome' => $opt['browsers']['chrome'],
+				'safari' => $opt['browsers']['safari'],
+				'ie' => $opt['browsers']['ie'],
+				'firefoxu' => $opt['browsersu']['firefox'],
+				'operau' => $opt['browsersu']['opera'],
+				'chromeu' => $opt['browsersu']['chrome'],
+				'safariu' => $opt['browsersu']['safari'],
+				'ieu' => $opt['browsersu']['ie']
+			));
+		}
+	} else {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
+		wp_localize_script('ie6w_head_top', 'ie6w', array(
+			'url' => $ie6w_plug,
+			'test' => $opt['test'],
+			't1' => $opt['texts']['t1'],
+			't2' => $opt['texts']['t2'],
+			'firefox' => $opt['browsers']['firefox'],
+			'opera' => $opt['browsers']['opera'],
+			'chrome' => $opt['browsers']['chrome'],
+			'safari' => $opt['browsers']['safari'],
+			'ie' => $opt['browsers']['ie'],
+			'firefoxu' => $opt['browsersu']['firefox'],
+			'operau' => $opt['browsersu']['opera'],
+			'chromeu' => $opt['browsersu']['chrome'],
+			'safariu' => $opt['browsersu']['safari'],
+			'ieu' => $opt['browsersu']['ie']
+		));
+	}
 }
 
 // HEADER: CENTER
 function ie6w_head_center() {
 	global $ie6w_plug;
 	$opt = get_option('ie6w_options');
-	//echo '<!-- ie6w CENTER ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
-	wp_localize_script('ie6w_head_center', 'ie6w', array(
-		'url' => $ie6w_plug,
-		'test' => $opt['test'],
-		't1' => $opt['texts']['t1'],
-		't2' => $opt['texts']['t2'],
-		't3' => $opt['texts']['t3'],
-		'firefox' => $opt['browsers']['firefox'],
-		'opera' => $opt['browsers']['opera'],
-		'chrome' => $opt['browsers']['chrome'],
-		'safari' => $opt['browsers']['safari'],
-		'ie' => $opt['browsers']['ie'],
-		'firefoxu' => $opt['browsersu']['firefox'],
-		'operau' => $opt['browsersu']['opera'],
-		'chromeu' => $opt['browsersu']['chrome'],
-		'safariu' => $opt['browsersu']['safari'],
-		'ieu' => $opt['browsersu']['ie']
-	));
+	if ( $opt['phptest'] == 'true' ) {
+		$a_browser_data = browser_detection('full');
+		if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
+			wp_localize_script('ie6w_head_center', 'ie6w', array(
+				'url' => $ie6w_plug,
+				'test' => $opt['test'],
+				't1' => $opt['texts']['t1'],
+				't2' => $opt['texts']['t2'],
+				't3' => $opt['texts']['t3'],
+				'firefox' => $opt['browsers']['firefox'],
+				'opera' => $opt['browsers']['opera'],
+				'chrome' => $opt['browsers']['chrome'],
+				'safari' => $opt['browsers']['safari'],
+				'ie' => $opt['browsers']['ie'],
+				'firefoxu' => $opt['browsersu']['firefox'],
+				'operau' => $opt['browsersu']['opera'],
+				'chromeu' => $opt['browsersu']['chrome'],
+				'safariu' => $opt['browsersu']['safari'],
+				'ieu' => $opt['browsersu']['ie']
+			));
+		}
+	} else {
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
+		wp_localize_script('ie6w_head_center', 'ie6w', array(
+			'url' => $ie6w_plug,
+			'test' => $opt['test'],
+			't1' => $opt['texts']['t1'],
+			't2' => $opt['texts']['t2'],
+			't3' => $opt['texts']['t3'],
+			'firefox' => $opt['browsers']['firefox'],
+			'opera' => $opt['browsers']['opera'],
+			'chrome' => $opt['browsers']['chrome'],
+			'safari' => $opt['browsers']['safari'],
+			'ie' => $opt['browsers']['ie'],
+			'firefoxu' => $opt['browsersu']['firefox'],
+			'operau' => $opt['browsersu']['opera'],
+			'chromeu' => $opt['browsersu']['chrome'],
+			'safariu' => $opt['browsersu']['safari'],
+			'ieu' => $opt['browsersu']['ie']
+		));
+	}
 }
 
 // HEADER: CRASH
 function ie6w_head_crash() {
 	$opt = get_option('ie6w_options');
-	//echo '<!-- ie6w CRASH ' . $opt['type'] . ' ' . $opt['test'] . ' -->';
-	echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table>
-	<STYLE>@;/*<![endif]-->';
+	if ( $opt['phptest'] == 'true' ) {
+		$a_browser_data = browser_detection('full');
+		if ( $a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6 ) {
+			echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table><STYLE>@;/*<![endif]-->';
+		}
+	} else {
+		echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table><STYLE>@;/*<![endif]-->';
+	}
 }
 
 // INITIALIZATION - locales @ /lang/
@@ -188,10 +291,11 @@ function ie6w_options() {
 global $ie6w_dom;
 $opt = get_option('ie6w_options');
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.5.7';
+$plug_ver = '1.5.8';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 	if ( isset($_POST['update_options']) ) {
 		$opt['type'] = $_POST['ie6w_form_type'];
+		$opt['phptest'] = $_POST['ie6w_form_phptest'];
 		$opt['test'] = $_POST['ie6w_form_test'];
 		if ( $_POST['ie6w_form_t1'] != "" ) { $opt['texts']['t1'] = $_POST['ie6w_form_t1']; }
 		if ( $_POST['ie6w_form_t2'] != "" ) { $opt['texts']['t2'] = $_POST['ie6w_form_t2']; }
@@ -235,6 +339,15 @@ $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
                     </select></td>
         <td><?php echo __('The type of warning that will be showed. <strong>Top</strong>, the discreet top bar. <strong>Center</strong>, the full screen one. <strong>Crash</strong>, the mean option.', $ie6w_dom); ?></td>
       </tr>
+      <tr>
+        <td width="125"><?php echo __('PHP Detection', $ie6w_dom); ?></td>
+        <td width="125"><select name="ie6w_form_phptest" style="width: 100px">
+                    <option value="false" <?php if ( $opt['phptest'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Off', $ie6w_dom); ?></option>
+                    <option value="true" <?php if ( $opt['phptest'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('On', $ie6w_dom); ?></option>
+                    </select></td>
+        <td><?php echo __('Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>.', $ie6w_dom); ?></td>
+      </tr>
+
       <tr>
         <td width="125"><?php echo __('Test mode', $ie6w_dom); ?></td>
         <td width="125"><select name="ie6w_form_test" style="width: 100px">
