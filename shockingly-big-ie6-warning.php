@@ -252,6 +252,7 @@ function ie6w_head_center() {
 function ie6w_head_crash() {
 	$opt = get_option('ie6w_options');
 	if ( $opt['phptest'] == 'true' ) {
+		$a_browser_data = browser_detection('full');
 		if ( $a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6 ) {
 			echo '<!--[if lte IE 6]><style>*{position:relative}</style><table><input></table><STYLE>@;/*<![endif]-->';
 		}
@@ -294,6 +295,7 @@ $plug_ver = '1.5.7';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 	if ( isset($_POST['update_options']) ) {
 		$opt['type'] = $_POST['ie6w_form_type'];
+		$opt['phptest'] = $_POST['ie6w_form_phptest'];
 		$opt['test'] = $_POST['ie6w_form_test'];
 		if ( $_POST['ie6w_form_t1'] != "" ) { $opt['texts']['t1'] = $_POST['ie6w_form_t1']; }
 		if ( $_POST['ie6w_form_t2'] != "" ) { $opt['texts']['t2'] = $_POST['ie6w_form_t2']; }
@@ -337,6 +339,15 @@ $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
                     </select></td>
         <td><?php echo __('The type of warning that will be showed. <strong>Top</strong>, the discreet top bar. <strong>Center</strong>, the full screen one. <strong>Crash</strong>, the mean option.', $ie6w_dom); ?></td>
       </tr>
+      <tr>
+        <td width="125"><?php echo __('PHP Detection', $ie6w_dom); ?></td>
+        <td width="125"><select name="ie6w_form_phptest" style="width: 100px">
+                    <option value="false" <?php if ( $opt['phptest'] == 'false' ) echo 'selected="selected"'; ?> /><?php echo __('Off', $ie6w_dom); ?></option>
+                    <option value="true" <?php if ( $opt['phptest'] == 'true' ) echo 'selected="selected"'; ?> /><?php echo __('On', $ie6w_dom); ?></option>
+                    </select></td>
+        <td><?php echo __('Turn this <strong>On</strong> if you are having some kind of trouble, like layout errors, when this plugin is <strong>On</strong>, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>.', $ie6w_dom); ?></td>
+      </tr>
+
       <tr>
         <td width="125"><?php echo __('Test mode', $ie6w_dom); ?></td>
         <td width="125"><select name="ie6w_form_test" style="width: 100px">
