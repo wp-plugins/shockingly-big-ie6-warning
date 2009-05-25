@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>.
 Author: matias s
-Version: 1.5.9
+Version: 1.6.0
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -291,7 +291,7 @@ function ie6w_options() {
 global $ie6w_dom;
 $opt = get_option('ie6w_options');
 $plug_name = 'Shockingly Big IE6 Warning';
-$plug_ver = '1.5.9';
+$plug_ver = '1.6.0';
 $plug_site = 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/';
 	if ( isset($_POST['update_options']) ) {
 		$opt['type'] = $_POST['ie6w_form_type'];

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shockingly-big-ie6-warning\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-20 15:50-0300\n"
+"POT-Creation-Date: 2009-05-25 01:57-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: matias s. <matias@incerteza.org>\n"
 "Language-Team: matias s. <matias@incerteza.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 
 #: ../shockingly-big-ie6-warning.php:278
 #: ../shockingly-big-ie6-warning.php:324
-#: ../shockingly-big-ie6-warning.php:328
+#: ../shockingly-big-ie6-warning.php:329
+#: ../shockingly-big-ie6-warning.php:457
 msgid "Settings"
 msgstr "Configurações"
 
@@ -38,119 +39,121 @@ msgstr "Opções salvas."
 msgid "Default options loaded."
 msgstr "Opções padrão carregadas."
 
-#: ../shockingly-big-ie6-warning.php:330
+#: ../shockingly-big-ie6-warning.php:331
+#: ../shockingly-big-ie6-warning.php:459
 msgid "Description"
 msgstr "Descrição"
 
-#: ../shockingly-big-ie6-warning.php:333
+#: ../shockingly-big-ie6-warning.php:335
 msgid "Warning type"
 msgstr "Tipo de aviso"
 
-#: ../shockingly-big-ie6-warning.php:335
-#: ../shockingly-big-ie6-warning.php:345
-#: ../shockingly-big-ie6-warning.php:354
+#: ../shockingly-big-ie6-warning.php:338
+#: ../shockingly-big-ie6-warning.php:356
+#: ../shockingly-big-ie6-warning.php:466
 msgid "Off"
 msgstr "Desligado"
 
-#: ../shockingly-big-ie6-warning.php:336
+#: ../shockingly-big-ie6-warning.php:341
 msgid "Top"
 msgstr "Topo"
 
-#: ../shockingly-big-ie6-warning.php:337
+#: ../shockingly-big-ie6-warning.php:344
 msgid "Center"
 msgstr "Central"
 
-#: ../shockingly-big-ie6-warning.php:338
+#: ../shockingly-big-ie6-warning.php:347
 msgid "Crash"
 msgstr "Travar"
 
-#: ../shockingly-big-ie6-warning.php:340
+#: ../shockingly-big-ie6-warning.php:350
 msgid "The type of warning that will be showed. <strong>Top</strong>, the discreet top bar. <strong>Center</strong>, the full screen one. <strong>Crash</strong>, the mean option."
 msgstr "O tipo de aviso que será mostrado. <strong>Topo</strong>, uma discreta barra no topo da janela. <strong>Central</strong>, um aviso de tela cheia. <strong>Travar</strong>, a opção malvada."
 
-#: ../shockingly-big-ie6-warning.php:343
-msgid "PHP Detection"
-msgstr "Detecção PHP"
-
-#: ../shockingly-big-ie6-warning.php:346
-#: ../shockingly-big-ie6-warning.php:355
-msgid "On"
-msgstr "Ligado"
-
-#: ../shockingly-big-ie6-warning.php:348
-msgid "Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>."
-msgstr "Selecione Ligado <strong>somente</strong> se você está tendo algum problema, como erros de layout, quando este plugin está Ligado, então uma função PHP irá inserir o código <strong>somente</strong> se você estiver usando o <strong>IE6</strong>."
-
-#: ../shockingly-big-ie6-warning.php:352
+#: ../shockingly-big-ie6-warning.php:353
 msgid "Test mode"
 msgstr "Modo de teste"
 
-#: ../shockingly-big-ie6-warning.php:357
+#: ../shockingly-big-ie6-warning.php:359
+#: ../shockingly-big-ie6-warning.php:469
+msgid "On"
+msgstr "Ligado"
+
+#: ../shockingly-big-ie6-warning.php:362
 msgid "Turn this <strong>On</strong> if you want to test the Warnings in any browser."
 msgstr "Selecione <strong>Ligado</strong> se você quer testar o aviso em qualquer navegador."
 
-#: ../shockingly-big-ie6-warning.php:361
+#: ../shockingly-big-ie6-warning.php:366
 msgid "Browsers"
 msgstr "Navegadores"
 
-#: ../shockingly-big-ie6-warning.php:363
+#: ../shockingly-big-ie6-warning.php:368
 msgid "URL"
 msgstr "URL"
 
-#: ../shockingly-big-ie6-warning.php:368
 #: ../shockingly-big-ie6-warning.php:375
-#: ../shockingly-big-ie6-warning.php:382
-#: ../shockingly-big-ie6-warning.php:389
-#: ../shockingly-big-ie6-warning.php:396
+#: ../shockingly-big-ie6-warning.php:387
+#: ../shockingly-big-ie6-warning.php:399
+#: ../shockingly-big-ie6-warning.php:411
+#: ../shockingly-big-ie6-warning.php:423
 msgid "Show"
 msgstr "Mostrar"
 
-#: ../shockingly-big-ie6-warning.php:369
-#: ../shockingly-big-ie6-warning.php:376
-#: ../shockingly-big-ie6-warning.php:383
+#: ../shockingly-big-ie6-warning.php:378
 #: ../shockingly-big-ie6-warning.php:390
-#: ../shockingly-big-ie6-warning.php:397
+#: ../shockingly-big-ie6-warning.php:402
+#: ../shockingly-big-ie6-warning.php:414
+#: ../shockingly-big-ie6-warning.php:426
 msgid "Hide"
 msgstr "Esconder"
 
-#: ../shockingly-big-ie6-warning.php:401
+#: ../shockingly-big-ie6-warning.php:432
 msgid "Warning Message"
 msgstr "Mensagem de Aviso"
 
-#: ../shockingly-big-ie6-warning.php:404
+#: ../shockingly-big-ie6-warning.php:436
 msgid "Field"
 msgstr "Campo"
 
-#: ../shockingly-big-ie6-warning.php:405
-#: ../shockingly-big-ie6-warning.php:412
+#: ../shockingly-big-ie6-warning.php:437
+#: ../shockingly-big-ie6-warning.php:445
 msgid "Text"
 msgstr "Texto"
 
-#: ../shockingly-big-ie6-warning.php:408
+#: ../shockingly-big-ie6-warning.php:441
 msgid "Title"
 msgstr "Título"
 
-#: ../shockingly-big-ie6-warning.php:416
+#: ../shockingly-big-ie6-warning.php:449
 msgid "Observation"
 msgstr "Observação"
 
-#: ../shockingly-big-ie6-warning.php:420
+#: ../shockingly-big-ie6-warning.php:453
+#: ../shockingly-big-ie6-warning.php:463
+msgid "PHP Detection"
+msgstr "Detecção PHP"
+
+#: ../shockingly-big-ie6-warning.php:472
+msgid "Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On, so a PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>."
+msgstr "Selecione Ligado <strong>somente</strong> se você está tendo algum problema, como erros de layout, quando este plugin está Ligado, então uma função PHP irá inserir o código <strong>somente</strong> se você estiver usando o <strong>IE6</strong>."
+
+#: ../shockingly-big-ie6-warning.php:476
 msgid "Save Changes"
 msgstr "Salvar Mudanças"
 
-#: ../shockingly-big-ie6-warning.php:420
+#: ../shockingly-big-ie6-warning.php:477
 msgid "Reset Options"
 msgstr "Recarregar Opções"
 
-#: ../shockingly-big-ie6-warning.php:423
+#: ../shockingly-big-ie6-warning.php:481
 msgid "<strong>Note</strong>: i'm learning PHP & Wordpress coding and using this plugin to study, so if you have any idea or any kind of suggestion please contact me."
 msgstr "<strong>Nota</strong>: estou aprendendo PHP & codificação Wordpress e usando este plugin para estudar, então se você tiver qualquer idéia ou sugestão entre em contato."
 
-#: ../shockingly-big-ie6-warning.php:424
+#: ../shockingly-big-ie6-warning.php:482
 msgid "by"
 msgstr "por"
 
-#: ../shockingly-big-ie6-warning.php:424
+#: ../shockingly-big-ie6-warning.php:482
 msgid "at"
 msgstr "de"
 
