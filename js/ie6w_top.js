@@ -1,10 +1,24 @@
-// 1.6.0
-jQuery(document).ready(function(){
-if ((jQuery.browser.msie && jQuery.browser.version<=6) || (ie6w.test == 'true')) {
+// 1.6.1
+if (ie6w.jstest == 'true' && ie6w.test == 'true') { alert('IE6W:Begin'); }
+
+var Client = {
+	Engine: {'name': 'unknown', 'version': ''},	
+	Features: {}
+};
+Client.Features.xhr = !!(window.XMLHttpRequest);
+Client.Features.xpath = !!(document.evaluate);
+if (window.opera) Client.Engine.name = 'opera';
+else if (window.ActiveXObject) Client.Engine = {'name': 'ie', 'version': (Client.Features.xhr) ? 7 : 6};
+else if (!navigator.taintEnabled) Client.Engine = {'name': 'webkit', 'version': (Client.Features.xpath) ? 420 : 419};
+else if (document.getBoxObjectFor != null) Client.Engine.name = 'gecko';
+Client.Engine[Client.Engine.name] = Client.Engine[Client.Engine.name + Client.Engine.version] = true;
+
+jQuery(document).ready(function() {
+if ((jQuery.browser.msie && jQuery.browser.version<=6 && (Client.Engine.ie && !Client.Engine.ie7)) || (ie6w.test == 'true')) {
 		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_icon"><img src="' + ie6w.url + 'img/alert.gif" width="30" height="28" /></div><div id="ie6w_text"><strong><font color=RED>' + ie6w.t1 + '</font></strong>: ' + ie6w.t2 + '</div><div id="ie6w_browsers"></div></div>');
 		jQuery('#ie6w_div').css({
 			"overflow": "hidden",
-			"z-index": "1000",
+			"z-index": "1500",
 			"left": "0px",
 			"top": "0px",
 			"height": "34px",
@@ -42,11 +56,11 @@ if ((jQuery.browser.msie && jQuery.browser.version<=6) || (ie6w.test == 'true'))
 		}
 		if(ie6w.opera=='true') {
 			ie6w_b++;
-			jQuery('#ie6w_div #ie6w_browsers').prepend('<a href="' + ie6w.operau + '" target="_blank"><img src="' + ie6w.url + '/img/op.gif" alt="get Opera!" width="28" height="28" border="0" /></a>');
+			jQuery('#ie6w_div #ie6w_browsers').prepend('<a href="' + ie6w.operau + '" target="_blank"><img src="' + ie6w.url + '/img/opera.gif" alt="get Opera!" width="28" height="28" border="0" /></a>');
 		}
 		if(ie6w.firefox=='true') {
 			ie6w_b++;
-			jQuery('#ie6w_div #ie6w_browsers').prepend('<a href="' + ie6w.firefoxu + '" target="_blank"><img src="' + ie6w.url + '/img/ff.gif" alt="get Firefox!" width="28" height="28" border="0" /></a>');
+			jQuery('#ie6w_div #ie6w_browsers').prepend('<a href="' + ie6w.firefoxu + '" target="_blank"><img src="' + ie6w.url + '/img/firefox.gif" alt="get Firefox!" width="28" height="28" border="0" /></a>');
 		}
 		jQuery('#ie6w_div #ie6w_browsers').css({
 			"overflow": "hidden",
@@ -69,3 +83,4 @@ if ((jQuery.browser.msie && jQuery.browser.version<=6) || (ie6w.test == 'true'))
 		}).width(jQuery(window).width() - jQuery('#ie6w_div #ie6w_icon').outerWidth() - jQuery('#ie6w_div #ie6w_browsers').outerWidth() - 6);
 }
 });
+if (ie6w.jstest == 'true' && ie6w.test == 'true') { alert('IE6W:End'); }
