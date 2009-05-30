@@ -4,7 +4,7 @@ Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
 Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>.
 Author: matias s
-Version: 1.6.1
+Version: 1.6.2
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -26,14 +26,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 // GLOBAL VARIABLES
-$ie6w_dom = 'shockingly-big-ie6-warning';
-$ie6w_plug = get_settings('siteurl') . '/wp-content/plugins/shockingly-big-ie6-warning/';
+$ie6w_domain = 'shockingly-big-ie6-warning';
+$ie6w_url = WP_PLUGIN_URL . '/shockingly-big-ie6-warning';
 
 // DEFAULT OPTIONS
 function ie6w_defaults() {
 	$setup = array(
 		'name' => 'Shockingly Big IE6 Warning',
-		'version' => '1.6.1',
+		'version' => '1.6.2',
 		'site' => 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/',
 		'type' => 'top',
 		'test' => 'false',
@@ -69,8 +69,8 @@ if ( is_admin() ) {
 	add_action('init', 'ie6w_init');
 }
 function ie6w_init() {
-	global $ie6w_dom;
-	load_plugin_textdomain($ie6w_dom, '/wp-content/plugins/shockingly-big-ie6-warning/lang/');
+	global $ie6w_domain;
+	load_plugin_textdomain($ie6w_domain, '/wp-content/plugins/shockingly-big-ie6-warning/lang/');
 }
 
 // ACTIVATION - when plugin is activated
@@ -92,21 +92,14 @@ function ie6w_activate() {
 		$options = ie6w_defaults();
 		add_option('ie6w_options', $options);
 	} else {
-		//update_option("ie6w_options", $options);
-		ie6w_updateopt();
+		$options = ie6w_defaults();
+		if ( $opt['version'] != $options['version'] ) {
+			$options['texts']['t1'] = $opt['texts']['t1'];
+			$options['texts']['t2'] = $opt['texts']['t2'];
+			$options['texts']['t3'] = $opt['texts']['t3'];
+			update_option("ie6w_options", $options);
+		}
 	}
-}
-function ie6w_updateopt() {
-$ie6w_atual = get_option('ie6w_options');
-$ie6w_padrao = ie6w_defaults();
-	if ( $ie6w_atual['name'] == NULL ) { $ie6w_atual['name'] = $ie6w_padrao['name']; }
-	if ( $ie6w_atual['version'] == NULL ) { $ie6w_atual['version'] = $ie6w_padrao['version']; }
-	if ( $ie6w_atual['site'] == NULL ) { $ie6w_atual['site'] = $ie6w_padrao['site']; }
-	if ( $ie6w_atual['phptest'] == NULL ) { $ie6w_atual['phptest'] = $ie6w_padrao['phptest']; }
-	if ( $ie6w_atual['crashmode'] == NULL ) { $ie6w_atual['crashmode'] = $ie6w_padrao['crashmode']; }
-	if ( $ie6w_atual['headcomm'] == NULL ) { $ie6w_atual['headcomm'] = $ie6w_padrao['headcomm']; }
-	if ( $ie6w_atual['jstest'] == NULL ) { $ie6w_atual['jstest'] = $ie6w_padrao['jstest']; }
-	update_option("ie6w_options", $ie6w_atual);
 }
 
 // DEACTIVATION - when plugin is deactivated
@@ -136,15 +129,15 @@ function ie6w_head() {
 
 // HEADER: TOP
 function ie6w_head_top() {
-	global $ie6w_plug;
+	global $ie6w_url;
 	$opt = get_option('ie6w_options');
 	if ( $opt['phptest'] == 'true' ) { // PHP Test [ON]
 		$a_browser_data = browser_detection('full');
 		if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
 			wp_enqueue_script('jquery');
-			wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
+			wp_enqueue_script('ie6w_head_top', $ie6w_url . '/js/ie6w_top.js', array('jquery'));
 			wp_localize_script('ie6w_head_top', 'ie6w', array(
-				'url' => $ie6w_plug,
+				'url' => $ie6w_url,
 				'test' => $opt['test'],
 				'jstest' => $opt['jstest'],
 				't1' => $opt['texts']['t1'],
@@ -163,9 +156,9 @@ function ie6w_head_top() {
 		}
 	} else { // PHP Test [OFF]
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('ie6w_head_top', $ie6w_plug . 'js/ie6w_top.js', array('jquery'));
+		wp_enqueue_script('ie6w_head_top', $ie6w_url . '/js/ie6w_top.js', array('jquery'));
 		wp_localize_script('ie6w_head_top', 'ie6w', array(
-			'url' => $ie6w_plug,
+			'url' => $ie6w_url,
 			'test' => $opt['test'],
 			'jstest' => $opt['jstest'],
 			't1' => $opt['texts']['t1'],
@@ -186,15 +179,15 @@ function ie6w_head_top() {
 
 // HEADER: CENTER
 function ie6w_head_center() {
-	global $ie6w_plug;
+	global $ie6w_url;
 	$opt = get_option('ie6w_options');
 	if ( $opt['phptest'] == 'true' ) { // PHP Test [ON]
 		$a_browser_data = browser_detection('full');
 		if ( ($a_browser_data[0] == 'ie' && $a_browser_data[1] <= 6) || ($opt['test'] == 'true') ) {
 			wp_enqueue_script('jquery');
-			wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
+			wp_enqueue_script('ie6w_head_center', $ie6w_url . '/js/ie6w_center.js', array('jquery'));
 			wp_localize_script('ie6w_head_center', 'ie6w', array(
-				'url' => $ie6w_plug,
+				'url' => $ie6w_url,
 				'test' => $opt['test'],
 				'jstest' => $opt['jstest'],
 				't1' => $opt['texts']['t1'],
@@ -214,9 +207,9 @@ function ie6w_head_center() {
 		}
 	} else { // PHP Test [OFF]
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('ie6w_head_center', $ie6w_plug . 'js/ie6w_center.js', array('jquery'));
+		wp_enqueue_script('ie6w_head_center', $ie6w_url . '/js/ie6w_center.js', array('jquery'));
 		wp_localize_script('ie6w_head_center', 'ie6w', array(
-			'url' => $ie6w_plug,
+			'url' => $ie6w_url,
 			'test' => $opt['test'],
 			'jstest' => $opt['jstest'],
 			't1' => $opt['texts']['t1'],
@@ -306,11 +299,11 @@ if ( is_admin() ) {
 	add_filter('plugin_action_links', 'ie6w_plugins_page', 10, 2);
 }
 function ie6w_plugins_page($links, $file){
-global $ie6w_dom;
+global $ie6w_domain;
 	static $this_plugin;
  	if( !$this_plugin ) $this_plugin = plugin_basename(__FILE__);
  	if( $file == $this_plugin ){
-		$settings_link = '<a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">' . __('Settings', $ie6w_dom) . '</a>';
+		$settings_link = '<a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">' . __('Settings', $ie6w_domain) . '</a>';
 		$links[1] = $links[0];
 		$links[0] = $settings_link;
 	}
@@ -322,21 +315,22 @@ if ( is_admin() ) {
 	add_action('admin_menu', 'ie6w_options');
 }
 function ie6w_options() { // options menu
-	$page = add_options_page(__('Shockingly Big IE6 Warning Options', $ie6w_dom), __('S. Big IE6 Warning', $ie6w_dom), 8, __FILE__, 'ie6w_options_page');
+	$page = add_options_page(__('Shockingly Big IE6 Warning Options', $ie6w_domain), __('S. Big IE6 Warning', $ie6w_domain), 8, __FILE__, 'ie6w_options_page');
 	add_action("admin_print_scripts-$page", 'ie6w_admin_js');
 	add_action("admin_print_styles-$page", 'ie6w_admin_css');
 }
 function ie6w_admin_js() { // options js
-	global $ie6w_plug;
+	global $ie6w_url;
 	wp_enqueue_script('jquery-ui-tabs');
-	wp_enqueue_script('ie6w_tabs_js', $ie6w_plug . 'js/ie6w_opt.js', array('jquery-ui-tabs'));
+	wp_enqueue_script('ie6w_tabs_js', $ie6w_url . '/js/ie6w_opt.js', array('jquery-ui-tabs'));
 }
 function ie6w_admin_css() { // options css
-	global $ie6w_plug;
-	wp_enqueue_style('ie6w_tabs_css', $ie6w_plug . 'css/ie6w_tabs.css');
+	global $ie6w_url;
+	wp_enqueue_style('ie6w_tabs_css', $ie6w_url . '/css/ie6w_opt.css');
 }
 function ie6w_options_page() { // options page
-global $ie6w_dom, $ie6w_plug;
+global $ie6w_domain, $ie6w_url;
+$opt = get_option('ie6w_options');
 	if ( isset($_POST['update_options']) ) { // save options
 	// tab 1
 		$opt['type'] = $_POST['ie6w_type'];
@@ -360,84 +354,91 @@ global $ie6w_dom, $ie6w_plug;
 		$opt['crashmode'] = $_POST['ie6w_crashmode'];
 		$opt['headcomm'] = $_POST['ie6w_headcomm'];
 		$opt['jstest'] = $_POST['ie6w_jstest'];
-		update_option("ie6w_options", $opt);
-		echo '<div id="message" class="updated fade"><p><strong>' . __('Settings saved.', $ie6w_dom) . '</strong></p></div>';
-    } else if ( isset($_POST['reset_options']) ) { // reset options
+		update_option('ie6w_options', $opt);
+		$opt = get_option('ie6w_options');
+		echo '<div id="message" class="updated fade"><p><strong>' . __('Settings saved.', $ie6w_domain) . '</strong></p></div>';
+    } 
+	if ( isset($_POST['reset_options']) ) { // reset options
 		$opt = ie6w_defaults();
-		update_option("ie6w_options", $opt);
-		echo '<div id="message" class="updated fade"><p><strong>' . __('Default options loaded.', $ie6w_dom) . '</strong></p></div>';
-	} else if ( isset($_POST['delete_options']) ) { // delete options
+		update_option('ie6w_options', $opt);
+		echo '<div id="message" class="updated fade"><p><strong>' . __('Default options loaded.', $ie6w_domain) . '</strong></p></div>';
+		$opt = get_option('ie6w_options');
+	} 
+	if ( isset($_POST['delete_options']) ) { // delete options
 		delete_option('ie6w_options');
-		echo '<div id="message" class="updated fade"><p><strong>' . __('Options deleted.', $ie6w_dom) . '</strong></p></div>';
+		echo '<div id="message" class="updated fade"><p><strong>' . __('Options deleted.', $ie6w_domain) . '</strong></p></div>';
+		$opt = get_option('ie6w_options');
 	}
-$opt = get_option('ie6w_options');
+	if ( $opt['jstest'] == 'true' && $opt['test'] == 'false' ) {
+		echo '<div id="message" class="updated fade"><p><strong>' . __('Attention: JavaScript Test is On, but Test Mode is Off, JavaScript Test will not work.', $ie6w_domain) . '</strong></p></div>';
+	}
     ?>
 <div class="wrap">
   <div class="icon32" id="icon-options-ie6w"><br/>
   </div>
-  <h2><?php echo __('Shockingly Big IE6 Warning Settings', $ie6w_dom); ?></h2>
+  <h2><?php echo __('Shockingly Big IE6 Warning Settings', $ie6w_domain); ?></h2>
   <div id="tabs">
   <ul>
-    <li><a href="#tabs-1"><?php echo __('Options', $ie6w_dom); ?></a> |</li>
-    <li><a href="#tabs-2"><?php echo __('Message', $ie6w_dom); ?></a> |</li>
-    <li><a href="#tabs-3"><?php echo __('Advanced', $ie6w_dom); ?></a></li>
-    <li>| <a href="#tabs-4"><?php echo __('Database', $ie6w_dom); ?></a></li>
+    <li><a href="#tabs-1"><?php echo __('Options', $ie6w_domain); ?></a> |</li>
+    <li><a href="#tabs-2"><?php echo __('Message', $ie6w_domain); ?></a> |</li>
+    <li><a href="#tabs-3"><?php echo __('Advanced', $ie6w_domain); ?></a></li>
+    <li>| <a href="#tabs-4"><?php echo __('Registry', $ie6w_domain); ?></a></li>
   </ul>
   <form method="post" name="options" target="_self">
     <div id="tabs-1"><br/>
       <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
         <thead>
           <tr>
-            <th width="125"><?php echo __('Settings', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Settings', $ie6w_domain); ?></th>
             <th width="125">&nbsp;</th>
-            <th><?php echo __('Description', $ie6w_dom); ?></th>
+            <th><?php echo __('Description', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
-          <td width="125"><?php echo __('Warning Type', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Warning Type', $ie6w_domain); ?></td>
           <td width="125"><select name="ie6w_type">
               <option value="off" <?php if ( $opt['type'] == 'off' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Off', $ie6w_dom); ?>
+              <?php echo __('Off', $ie6w_domain); ?>
               </option>
               <option value="top" <?php if ( $opt['type'] == 'top' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Top', $ie6w_dom); ?>
+              <?php echo __('Top', $ie6w_domain); ?>
               </option>
               <option value="center" <?php if ( $opt['type'] == 'center' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Center', $ie6w_dom); ?>
+              <?php echo __('Center', $ie6w_domain); ?>
               </option>
               <option value="crash" <?php if ( $opt['type'] == 'crash' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Crash', $ie6w_dom); ?>
+              <?php echo __('Crash', $ie6w_domain); ?>
               </option>
             </select></td>
-          <td><?php echo __('The warnings: <strong>Top</strong>, the discreet top bar. <strong>Center</strong>, the full screen one. <strong>Crash</strong>, the mean option.', $ie6w_dom); ?></td>
+          <td><?php echo __('The warnings: <strong>Top</strong>, the discreet top bar. <strong>Center</strong>, the full screen one. <strong>Crash</strong>, the mean option.', $ie6w_domain); ?></td>
         </tr>
         <tr>
-          <td width="125"><?php echo __('Test Mode', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Test Mode', $ie6w_domain); ?></td>
           <td width="125"><select name="ie6w_test">
               <option value="false" <?php if ( $opt['test'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Off', $ie6w_dom); ?>
+              <?php echo __('Off', $ie6w_domain); ?>
               </option>
               <option value="true" <?php if ( $opt['test'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('On', $ie6w_dom); ?>
+              <?php echo __('On', $ie6w_domain); ?>
               </option>
             </select></td>
-          <td><?php echo __('Turn this <strong>On</strong> if you want to test the Warnings in any browser.', $ie6w_dom); ?></td>
+          <td><?php echo __('Turn this <strong>On</strong> if you want to test the Warnings in any browser.', $ie6w_domain); ?></td>
         </tr>
         <thead>
           <tr>
-            <th width="125"><?php echo __('Browsers', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Browsers', $ie6w_domain); ?></th>
             <th width="125">&nbsp;</th>
-            <th><?php echo __('URL', $ie6w_dom); ?></th>
+            <th><?php echo __('URL', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
           <td width="125">Mozilla Firefox</td>
           <td width="125"><select name="ie6w_firefox">
               <option value="true" <?php if ( $opt['browsers']['firefox'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Show', $ie6w_dom); ?>
+              <?php echo __('Show', $ie6w_domain); ?>
               </option>
               <option value="false" <?php if ( $opt['browsers']['firefox'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Hide', $ie6w_dom); ?>
+              <?php echo __('Hide', $ie6w_domain); ?>
               </option>
             </select></td>
           <td><input type="text" name="ie6w_firefoxu" class="widefat firefox" value="<?php echo $opt['browsersu']['firefox']; ?>" /></td>
@@ -446,10 +447,10 @@ $opt = get_option('ie6w_options');
           <td width="125">Opera</td>
           <td width="125"><select name="ie6w_opera">
               <option value="true" <?php if ( $opt['browsers']['opera'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Show', $ie6w_dom); ?>
+              <?php echo __('Show', $ie6w_domain); ?>
               </option>
               <option value="false" <?php if ( $opt['browsers']['opera'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Hide', $ie6w_dom); ?>
+              <?php echo __('Hide', $ie6w_domain); ?>
               </option>
             </select></td>
           <td><input type="text" name="ie6w_operau" class="widefat opera" value="<?php echo $opt['browsersu']['opera']; ?>" /></td>
@@ -458,10 +459,10 @@ $opt = get_option('ie6w_options');
           <td width="125">Google Chrome</td>
           <td width="125"><select name="ie6w_chrome">
               <option value="true" <?php if ( $opt['browsers']['chrome'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Show', $ie6w_dom); ?>
+              <?php echo __('Show', $ie6w_domain); ?>
               </option>
               <option value="false" <?php if ( $opt['browsers']['chrome'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Hide', $ie6w_dom); ?>
+              <?php echo __('Hide', $ie6w_domain); ?>
               </option>
             </select></td>
           <td><input type="text" name="ie6w_chromeu" class="widefat chrome" value="<?php echo $opt['browsersu']['chrome']; ?>" /></td>
@@ -470,10 +471,10 @@ $opt = get_option('ie6w_options');
           <td>Apple Safari</td>
           <td><select name="ie6w_safari">
               <option value="true" <?php if ( $opt['browsers']['safari'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Show', $ie6w_dom); ?>
+              <?php echo __('Show', $ie6w_domain); ?>
               </option>
               <option value="false" <?php if ( $opt['browsers']['safari'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Hide', $ie6w_dom); ?>
+              <?php echo __('Hide', $ie6w_domain); ?>
               </option>
             </select></td>
           <td><input type="text" name="ie6w_safariu" class="widefat safari" value="<?php echo $opt['browsersu']['safari']; ?>" /></td>
@@ -482,10 +483,10 @@ $opt = get_option('ie6w_options');
           <td width="125">Internet Explorer</td>
           <td width="125"><select name="ie6w_ie">
               <option value="true" <?php if ( $opt['browsers']['ie'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Show', $ie6w_dom); ?>
+              <?php echo __('Show', $ie6w_domain); ?>
               </option>
               <option value="false" <?php if ( $opt['browsers']['ie'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Hide', $ie6w_dom); ?>
+              <?php echo __('Hide', $ie6w_domain); ?>
               </option>
             </select></td>
           <td><input type="text" name="ie6w_ieu" class="widefat ie" value="<?php echo $opt['browsersu']['ie']; ?>" /></td>
@@ -496,116 +497,116 @@ $opt = get_option('ie6w_options');
       <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
         <thead>
           <tr>
-            <th width="125"><?php echo __('Field', $ie6w_dom); ?></th>
-            <th><?php echo __('Text', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Field', $ie6w_domain); ?></th>
+            <th><?php echo __('Text', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
-          <td width="125"><?php echo __('Title', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Title', $ie6w_domain); ?></td>
           <td><input type="text" name="ie6w_t1" class="widefat" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t1'])); ?>" /></td>
         </tr>
         <tr>
-          <td width="125"><?php echo __('Text', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Text', $ie6w_domain); ?></td>
           <td><textarea name="ie6w_t2" rows="5" class="widefat"><?php echo stripslashes(htmlspecialchars($opt['texts']['t2'])); ?></textarea></td>
         </tr>
         <tr>
-          <td width="125"><?php echo __('Observation', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Observation', $ie6w_domain); ?></td>
           <td><input type="text" name="ie6w_t3" class="widefat" value="<?php echo stripslashes(htmlspecialchars($opt['texts']['t3'])); ?>" /></td>
         </tr>
       </table>
     </div>
     <div id="tabs-3">
-      <h3><?php echo __('PHP Detection', $ie6w_dom); ?></h3>
+      <h3><?php echo __('PHP Detection', $ie6w_domain); ?></h3>
       <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
         <thead>
           <tr>
-            <th width="125"><?php echo __('Settings', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Settings', $ie6w_domain); ?></th>
             <th width="125">&nbsp;</th>
-            <th><?php echo __('Description', $ie6w_dom); ?></th>
+            <th><?php echo __('Description', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
-          <td width="125"><?php echo __('PHP Detection', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('PHP Detection', $ie6w_domain); ?></td>
           <td width="125"><select name="ie6w_phptest">
               <option value="false" <?php if ( $opt['phptest'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Off', $ie6w_dom); ?>
+              <?php echo __('Off', $ie6w_domain); ?>
               </option>
               <option value="true" <?php if ( $opt['phptest'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('On', $ie6w_dom); ?>
+              <?php echo __('On', $ie6w_domain); ?>
               </option>
             </select></td>
-          <td><?php echo __('Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On. A PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>. Can cause false negatives.', $ie6w_dom); ?></td>
+          <td><?php echo __('Turn this On <strong>only</strong> if you are having some kind of trouble, like layout errors, when this plugin is On. A PHP function will render the code <strong>only</strong> if you are using <strong>IE6</strong>. Can cause false negatives.', $ie6w_domain); ?></td>
         </tr>
       </table>
-      <h3><?php echo __('IE6 Crash Methods', $ie6w_dom); ?></h3>
+      <h3><?php echo __('IE6 Crash Methods', $ie6w_domain); ?></h3>
       <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
         <thead>
           <tr>
-            <th width="125"><?php echo __('Settings', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Settings', $ie6w_domain); ?></th>
             <th width="125">&nbsp;</th>
-            <th><?php echo __('Description', $ie6w_dom); ?></th>
+            <th><?php echo __('Description', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
-          <td width="125"><?php echo __('Crash Methods', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Crash Methods', $ie6w_domain); ?></td>
           <td width="125"><select name="ie6w_crashmode">
               <option value="1" <?php if ( $opt['crashmode'] == '1' ) echo 'selected="selected"'; ?> />
-              <?php echo __('1', $ie6w_dom); ?>
+              <?php echo __('1', $ie6w_domain); ?>
               </option>
               <option value="2" <?php if ( $opt['crashmode'] == '2' ) echo 'selected="selected"'; ?> />
-              <?php echo __('2', $ie6w_dom); ?>
+              <?php echo __('2', $ie6w_domain); ?>
               </option>
             </select></td>
-          <td><?php echo __('Use the following code to crash IE6', $ie6w_dom); ?>: <span id="ie6w_crashmode_txt"></span></td>
+          <td><?php echo __('Use the following code to crash IE6', $ie6w_domain); ?>: <span id="ie6w_crashmode_txt"></span></td>
         </tr>
       </table>
-      <h3><?php echo __('Debug Mode', $ie6w_dom); ?></h3>
+      <h3><?php echo __('Debug Mode', $ie6w_domain); ?></h3>
       <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
         <thead>
           <tr>
-            <th width="125"><?php echo __('Settings', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Settings', $ie6w_domain); ?></th>
             <th width="125">&nbsp;</th>
-            <th><?php echo __('Description', $ie6w_dom); ?></th>
+            <th><?php echo __('Description', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
-          <td width="125"><?php echo __('Head Comment', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('Head Comment', $ie6w_domain); ?></td>
           <td width="125"><select name="ie6w_headcomm">
               <option value="false" <?php if ( $opt['headcomm'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Off', $ie6w_dom); ?>
+              <?php echo __('Off', $ie6w_domain); ?>
               </option>
               <option value="true" <?php if ( $opt['headcomm'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('On', $ie6w_dom); ?>
+              <?php echo __('On', $ie6w_domain); ?>
               </option>
             </select></td>
-          <td><?php echo __('This mode will put a comment in the <code>head</code> of your blog with info about the setting of the plugin.', $ie6w_dom); ?></td>
+          <td><?php echo __('This mode will put a comment in the <code>head</code> of your blog with info about the setting of the plugin.', $ie6w_domain); ?></td>
         </tr>
         <tr>
-          <td width="125"><?php echo __('JavaScript Test', $ie6w_dom); ?></td>
+          <td width="125"><?php echo __('JavaScript Test', $ie6w_domain); ?></td>
           <td width="125"><select name="ie6w_jstest">
               <option value="false" <?php if ( $opt['jstest'] == 'false' ) echo 'selected="selected"'; ?> />
-              <?php echo __('Off', $ie6w_dom); ?>
+              <?php echo __('Off', $ie6w_domain); ?>
               </option>
               <option value="true" <?php if ( $opt['jstest'] == 'true' ) echo 'selected="selected"'; ?> />
-              <?php echo __('On', $ie6w_dom); ?>
+              <?php echo __('On', $ie6w_domain); ?>
               </option>
             </select></td>
-          <td><?php echo __('Make the warning JavaScript pop up two alerts, one in the begin and other in the end of the script, this way you can know if the script is correctly loaded. For security this function only work with <strong>Test Mode</strong> activated.', $ie6w_dom); ?></td>
+          <td><?php echo __('Make the warning JavaScript pop up two alerts, one in the begin and other in the end of the script, this way you can know if the script is correctly loaded. For security this function only work with <strong>Test Mode</strong> activated.', $ie6w_domain); ?></td>
         </tr>
       </table>
-      <h3><?php echo __('Cleanup Registry', $ie6w_dom); ?></h3>
+      <h3><?php echo __('Cleanup Registry', $ie6w_domain); ?></h3>
       <p>
-        <input type="submit" name="delete_options" style="margin-left:12px;" class="button-secondary" value="<?php echo __('Delete Options', $ie6w_dom); ?>" />
+        <input type="submit" name="delete_options" style="margin-left:12px;" class="button-secondary" value="<?php echo __('Delete Options', $ie6w_domain); ?>" />
       </p>
-      <p>This option will remove any <strong>Shockingly Big IE6 Warning</strong> from the Wordpress database, use it for clean uninstall. If you want to use it againt deactivate and activate it or press the Reset Options button.</p>
+      <p><?php echo __('This option will remove any <strong>Shockingly Big IE6 Warning</strong> from the Wordpress database, use it for clean uninstall. If you want to use it againt deactivate and activate it or press the Reset Options button.', $ie6w_domain); ?></p>
     </div>
     </div>
     <div id="tabs-4"><br />
       <table width="100%" cellspacing="0" id="inactive-plugins-table" class="widefat">
         <thead>
           <tr>
-            <th width="125"><?php echo __('Field', $ie6w_dom); ?></th>
-            <th><?php echo __('Value', $ie6w_dom); ?></th>
+            <th width="125"><?php echo __('Field', $ie6w_domain); ?></th>
+            <th><?php echo __('Value', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
@@ -649,7 +650,7 @@ $opt = get_option('ie6w_options');
         <thead>
           <tr>
             <th width="125">texts</th>
-            <th><?php echo __('Value', $ie6w_dom); ?></th>
+            <th><?php echo __('Value', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
@@ -667,7 +668,7 @@ $opt = get_option('ie6w_options');
         <thead>
           <tr>
             <th width="125">browsers</th>
-            <th><?php echo __('Value', $ie6w_dom); ?></th>
+            <th><?php echo __('Value', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
@@ -693,7 +694,7 @@ $opt = get_option('ie6w_options');
         <thead>
           <tr>
             <th width="125">browsersu</th>
-            <th><?php echo __('Value', $ie6w_dom); ?></th>
+            <th><?php echo __('Value', $ie6w_domain); ?></th>
           </tr>
         </thead>
         <tr>
@@ -719,13 +720,13 @@ $opt = get_option('ie6w_options');
       </table>
     </div>
     <p class="submit">
-      <input type="submit" name="update_options" class="button-primary" value="<?php echo __('Save Changes', $ie6w_dom); ?>" />
-      <input type="submit" name="reset_options" value="<?php echo __('Reset Options', $ie6w_dom); ?>" />
+      <input type="submit" name="update_options" class="button-primary" value="<?php echo __('Save Changes', $ie6w_domain); ?>" />
+      <input type="submit" name="reset_options" value="<?php echo __('Reset Options', $ie6w_domain); ?>" />
     </p>
   </form>
   <hr />
-  <p><?php echo __('<strong>Note</strong>: i\'m learning PHP & Wordpress coding and using this plugin to study, so if you have any idea or any kind of suggestion please contact me.', $ie6w_dom); ?></p>
-  <p><?php echo '<a href="' . $opt['site'] . '">' . $opt['name'] . ' v' . $opt['version'] . '</a> ' . __('by', $ie6w_dom) . ' <a href="mailto:matias@incerteza.org">matias s.</a> ' . __('at', $ie6w_dom) . ' <a href="http://www.incerteza.org/blog/" target="_blank">incerteza.org</a>'; ?></p>
+  <p><?php echo __('<strong>Note</strong>: i\'m learning PHP & Wordpress coding and using this plugin to study, so if you have any idea or any kind of suggestion please contact me.', $ie6w_domain); ?></p>
+  <p><?php echo '<a href="' . $opt['site'] . '">' . $opt['name'] . ' v' . $opt['version'] . '</a> ' . __('by', $ie6w_domain) . ' <a href="mailto:matias@incerteza.org">matias s.</a> ' . __('at', $ie6w_domain) . ' <a href="http://www.incerteza.org/blog/" target="_blank">incerteza.org</a>'; ?></p>
 </div>
 <?php }
 ?>

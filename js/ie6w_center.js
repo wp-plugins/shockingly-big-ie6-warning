@@ -1,4 +1,4 @@
-// 1.6.1
+// 1.6.2
 if (ie6w.jstest == 'true' && ie6w.test == 'true') { alert('IE6W:Begin'); }
 
 var Client = {

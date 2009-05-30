@@ -1,4 +1,4 @@
-// 1.6.1
+// 1.6.2
 if (ie6w.jstest == 'true' && ie6w.test == 'true') { alert('IE6W:Begin'); }
 
 var Client = {
@@ -15,7 +15,7 @@ Client.Engine[Client.Engine.name] = Client.Engine[Client.Engine.name + Client.En
 
 jQuery(document).ready(function() {
 if ((jQuery.browser.msie && jQuery.browser.version<=6 && (Client.Engine.ie && !Client.Engine.ie7)) || (ie6w.test == 'true')) {
-		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_icon"><img src="' + ie6w.url + 'img/alert.gif" width="30" height="28" /></div><div id="ie6w_text"><strong><font color=RED>' + ie6w.t1 + '</font></strong>: ' + ie6w.t2 + '</div><div id="ie6w_browsers"></div></div>');
+		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_icon"><img src="' + ie6w.url + '/img/alert.gif" width="30" height="28" /></div><div id="ie6w_text"><strong><font color=RED>' + ie6w.t1 + '</font></strong>: ' + ie6w.t2 + '</div><div id="ie6w_browsers"></div></div>');
 		jQuery('#ie6w_div').css({
 			"overflow": "hidden",
 			"z-index": "1500",
