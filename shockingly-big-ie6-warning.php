@@ -2,9 +2,9 @@
 /*
 Plugin Name: Shockingly Big IE6 Warning
 Plugin URI: http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/
-Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>.
+Description: A warning message about the dangers of using <a href="http://en.wikipedia.org/wiki/Internet_explorer_6" target="_blank">Internet Explorer 6</a>, configure your warning at the plugin <a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">settings</a> page.
 Author: matias s
-Version: 1.6.2
+Version: 1.6.3
 Author URI: http://www.incerteza.org/blog/
 */
 
@@ -33,7 +33,7 @@ $ie6w_url = WP_PLUGIN_URL . '/shockingly-big-ie6-warning';
 function ie6w_defaults() {
 	$setup = array(
 		'name' => 'Shockingly Big IE6 Warning',
-		'version' => '1.6.2',
+		'version' => '1.6.3',
 		'site' => 'http://www.incerteza.org/blog/projetos/shockingly-big-ie6-warning/',
 		'type' => 'top',
 		'test' => 'false',
@@ -292,22 +292,6 @@ function browser_version( $browser_user_agent, $search_string ) {
 		}
 	}
 	return $browser_number;
-}
-
-// SETTINGS link @ Plugin list page
-if ( is_admin() ) {
-	add_filter('plugin_action_links', 'ie6w_plugins_page', 10, 2);
-}
-function ie6w_plugins_page($links, $file){
-global $ie6w_domain;
-	static $this_plugin;
- 	if( !$this_plugin ) $this_plugin = plugin_basename(__FILE__);
- 	if( $file == $this_plugin ){
-		$settings_link = '<a href="options-general.php?page=shockingly-big-ie6-warning/shockingly-big-ie6-warning.php">' . __('Settings', $ie6w_domain) . '</a>';
-		$links[1] = $links[0];
-		$links[0] = $settings_link;
-	}
-	return $links;
 }
 
 // OPTIONS PAGE

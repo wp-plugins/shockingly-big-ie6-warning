@@ -1,4 +1,4 @@
-// 1.6.2
+// 1.6.3
 jQuery(document).ready(function(){
 	// TABS
 	jQuery('#tabs').tabs();
@@ -6,7 +6,6 @@ jQuery(document).ready(function(){
 	jQuery('#icon-options-ie6w').click(function() {
 		jQuery('#tabs ul li:last').show();
 	});
-	/* jQuery('#tabs').tabs({ fx: { opacity: 'toggle' } }); */
 	// Browsers
 	jQuery('input[name^="ie6w_"][name$="u"]').each(function() {
 		if ( jQuery(this).val().search('^(http://)|(https://)|(ftp://)') != 0 ) { jQuery(this).css({ 'background-color': '#FF9999' }).after("Invalid URL!"); }

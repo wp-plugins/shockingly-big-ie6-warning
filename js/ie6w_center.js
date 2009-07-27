@@ -1,5 +1,9 @@
-// 1.6.2
+// 1.6.3
 if (ie6w.jstest == 'true' && ie6w.test == 'true') { alert('IE6W:Begin'); }
+
+function convertehtml(str) {
+	return str.replace(/&quot;/g,'"').replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">");
+}
 
 var Client = {
 	Engine: {'name': 'unknown', 'version': ''},	
@@ -15,7 +19,7 @@ Client.Engine[Client.Engine.name] = Client.Engine[Client.Engine.name + Client.En
 
 jQuery(document).ready(function(){
 if ((jQuery.browser.msie && jQuery.browser.version<=6 && (Client.Engine.ie && !Client.Engine.ie7)) || (ie6w.test == 'true')) {
-		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_frame"><div id="ie6w_t1">' + ie6w.t1 + '</div><div id="ie6w_t2">' + ie6w.t2 + '</div><div id="ie6w_t3">' + ie6w.t3 + '</div><div id="ie6w_browsers"></div></div></div>');
+		jQuery('body').prepend('<div id="ie6w_div"><div id="ie6w_frame"><div id="ie6w_t1">' + convertehtml(ie6w.t1) + '</div><div id="ie6w_t2">' + convertehtml(ie6w.t2) + '</div><div id="ie6w_t3">' + convertehtml(ie6w.t3) + '</div><div id="ie6w_browsers"></div></div></div>');
 		jQuery('#ie6w_div').css({
 			"position": "fixed",
 			"overflow": "hidden",
